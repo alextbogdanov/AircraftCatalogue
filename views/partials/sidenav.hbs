@@ -1,0 +1,11 @@
+<!-- SIDE-NAV -->
+<div id="side-nav">
+    {{#each aircrafts}}
+        <a href="/aircrafts/model/{{this._id}}" class="temp-aircraft">{{this.name}}</a>
+    {{/each}}
+        
+    {{!-- <p class="manufacturer">{{this.name}}<i class="fas fa-caret-down"></i></p>
+            <ul class="manufacturer-models hidden">
+            <li class="aircraft-model">A340-500</li>
+    </ul> --}}
+</div>

@@ -1,0 +1,5 @@
+<div class="top-message {{#if expressFlash.error}} error {{else if expressFlash.success}} success {{else if expressFlash.message}} message {{/if}}">
+    {{#each expressFlash}}
+        {{this}}
+    {{/each}}
+</div>

@@ -1,0 +1,29 @@
+<!-- JUMBOTRON -->
+<div class="jumbotron" id="aircraft-jumbotron">
+    <div class="jumbotron-title-container small-jumbotron">
+        <h1>{{aircraft.manufacturer_name}} {{aircraft.name}}</h1>
+    </div>
+</div>
+<!-- ADD INFORMATION FORM -->
+<div class="aircraft-form-container">
+    <form method="POST" action="/aircrafts/remove-spec/{{specType}}/{{aircraft._id}}" class="aircraft-form">
+        <h3>Aircraft Spec: <span>{{specType}}</span></h3>
+
+        <label for="spec">Specification:</label>
+        <input type="text" name="aircraft_spec" id="spec" value="type" class="disabled">
+
+        <label for="current-value">Current Value:</label>
+        <input type="text" name="current_value" id="current-value" value="{{currentValue}}" class="disabled">
+
+        <label for="explanation">Explanation:</label>
+        <textarea name="explanation" id="explanation" required></textarea>
+
+        <label for="source">Source: <span>*optional</span></label>
+        <input type="text" name="source" id="source">
+
+        <label for="action">Action:</label>
+        <input type="text" name="action" id="action" value="remove-information" class="disabled">
+
+        <input type="submit" class="aircraft-form-submit" >
+    </form>
+</div>

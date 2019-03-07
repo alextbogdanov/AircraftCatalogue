@@ -1,0 +1,59 @@
+/* ADMIN */
+
+#admin-actions {
+    max-width: 650px;
+    margin: 60px auto 0;
+}
+
+.admin-action:link {
+    display: block;
+    padding: 15px;
+    margin: 5px 0;
+    text-align: center;
+    background-color: #9AD4D6;
+    color: #fff;
+    border: 1px solid #72c3c6;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.admin-action:visited {
+    color: #fff;
+}
+
+.admin-action:hover {
+    background-color: #7fc8cb;
+}
+
+/* SUBMISSIONS */
+
+.submissions-wrapper {
+    max-width: 800px;
+    margin: 60px auto 0;
+}
+
+.submissions-wrapper h3 {
+    font-size: 28px;
+    text-align: center;
+}
+
+.submissions-wrapper table {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.submission-table-titles td {
+    font-weight: bold;
+    text-align: center;
+}
+
+.submissions-wrapper table tr:nth-of-type(2n + 1) {
+    background-color: #eee;
+}
+
+
+
+.submissions-wrapper table tr td {
+    text-align: center;
+    padding: 10px;
+}

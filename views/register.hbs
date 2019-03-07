@@ -1,0 +1,45 @@
+<!-- JUMBOTRON -->
+<div class="jumbotron" id="sign-up-jumbotron">
+    <div class="jumbotron-overlay dark">
+        <div class="jumbotron-title-container medium-jumbotron">
+            <h1>Welcome. Join us on our mission.</h1>
+        </div>
+    </div>
+</div>
+<!-- REGISTER FORM -->
+{{#if errors}}
+    <div class="register-errors">
+        <ul>
+        {{#each errors}}
+            <li><p>* {{this.msg}}</p></li>
+        {{/each}}
+        </ul>
+    </div>
+{{/if}}
+<div class="aircraft-form-container margin-top-60">
+    <form method="POST" action="/users/register" class="aircraft-form">
+        <div class="aircraft-form-half-input left">
+            <label for="first-name">First Name:</label>
+            <input type="text" name="firstName" id="first-name">
+        </div>
+
+        <div class="aircraft-form-half-input right">
+            <label for="last-name">Last Name:</label>
+            <input type="text" name="lastName" id="last-name">
+        </div>
+
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email">
+
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username">
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password">
+
+        <label for="repeat-password">Repeat Password:</label>
+        <input type="password" name="repeatPassword" id="repeat-password">
+
+        <input type="submit" value="submit" class="sign-up-submit">
+    </form>
+</div>

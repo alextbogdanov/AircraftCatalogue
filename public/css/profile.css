@@ -1,0 +1,75 @@
+/* PROFILE */
+
+#profile-wrapper {
+    margin: 60px auto 0;
+    max-width: 600px;
+}
+
+.profile-statistics-title {
+    font-size: 34px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.profile-statistics-container {
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 15px;
+    -webkit-box-shadow: 0px 0px 35px -10px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 0px 35px -10px rgba(0,0,0,0.4);
+    box-shadow: 0px 0px 35px -10px rgba(0,0,0,0.4);
+}
+
+.profile-statistics-container ul li p span {
+    margin-right: 5px;
+}
+
+.profile-general-statistics li p span {
+    color: #457B9D;
+}
+
+.profile-submissions-statistics {
+    margin-top: 20px;
+}
+
+.profile-submissions-statistics li p span {
+    color: #EB606A;
+}
+
+.profile-submissions {
+    width: 100%;
+}
+
+.profile-submissions .profile-submissions-titles td {
+    font-weight: bold;
+}
+
+.profile-submissions tr td {
+    padding: 5px 0;
+}
+
+.profile-submissions tr td {
+    text-align: left;
+}
+
+.profile-submissions tr td:nth-of-type(2n) {
+    text-align: center;
+}
+
+.profile-submissions tr td:nth-of-type(3n) {
+    text-align: right;
+}
+
+.pending-approval-submission {
+    color: #9AD4D6;
+}
+
+.approved-submission {
+    color: #457B9D;
+}
+
+.rejected-submission {
+    color: #EB606A;
+}

@@ -1,0 +1,19 @@
+<!-- TOP NAV -->
+<div id="top-nav" class="clearfix no-select">
+    <a href="/" id="logo">AIRCRAFT CATALOGUE</a>
+    <ul>
+        <li>
+            <a href="/aircrafts">Aircrafts</a>
+        </li>{{#if_eq user.role "admin"}}<li>
+            <a href="/admin">Admin Panel</a>
+        {{/if_eq}}</li>{{#if_eq user.role "user"}}<li>
+            <a href="/about">About</a>
+        {{/if_eq}}</li>{{#if user}}<li>
+                <a href="/users/my-profile">My Profile</a>
+        </li><li>
+                <a href="/users/logout">Logout</a>
+        </li>{{else}}<li>
+            <a href="/users/login" class="sign-in">Sign In</a> <span>/</span> <a href="/users/register" class="sign-in">Sign Up</a>
+        </li>{{/if}}
+    </ul>
+</div>

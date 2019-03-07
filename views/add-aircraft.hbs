@@ -1,0 +1,24 @@
+<!-- JUMBOTRON -->
+<div class="jumbotron" id="admin-panel-jumbotron">
+    <div class="jumbotron-overlay dark">
+        <div class="jumbotron-title-container medium-jumbotron">
+            <h1>Administration Panel</h1>
+        </div>
+    </div>
+</div>
+<!-- ADD AIRCRAFT FORM -->
+<div class="aircraft-form-container margin-top-60">
+    <form method="POST" action="/admin/add-aircraft" class="aircraft-form">
+        <label for="aircraft">Aircraft Model:</label>
+        <input type="text" name="aircraft" id="aircraft">
+
+        <label for="manufacturer">Manufacturer:</label>
+        <select name="manufacturer" id="manufacturer">
+            {{#each manufacturers}}
+                <option value="{{this.name}}">{{this.name}}</option>
+            {{/each}}
+        </select>
+
+        <input type="submit" class="sign-in-submit">
+    </form>
+</div>

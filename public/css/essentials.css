@@ -1,0 +1,417 @@
+/* ESSENTIALS */
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #22292e;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 1.35;
+}
+
+body.toggled {
+    overflow: hidden;
+}
+
+p {
+    font-size: 16px;
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+a:link {
+    text-decoration: none;
+    margin: 0;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+ul, ol, li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+::selection {
+    background-color: #1D3557;
+    color: #fff;
+}
+
+::-moz-selection {
+    background-color: #1D3557;
+    color: #fff;
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.margin-top-60 {
+    margin-top: 60px !important;
+}
+
+/* MODAL */
+
+.modal-wrapper {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 10;
+}
+
+.modal-wrapper.toggled {
+    display: block;
+}
+
+.modal-container {
+    position: relative;
+    max-width: 700px;
+    margin: 80px auto 0;
+}
+
+.modal-close-container {
+    text-align: right;
+    font-size: 32px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.modal {
+    position: relative;
+    max-width: 600px;
+    min-height: 100px;
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.modal-title {
+    text-align: center;
+    font-size: 28px;
+}
+
+.modal-content {
+    margin-top: 15px;
+}
+
+.modal-content p {
+    margin-top: 5px;
+}
+
+.modal-content p span {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.modal-content p a:link {
+    color: #457B9D;
+}
+
+.modal-content p a:visited {
+    color: #457B9D;
+}
+
+/* TOP-NAV */
+
+#top-nav {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 22.5px 35px;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+#logo:link {
+    color: #22292e;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    float: left;
+}
+
+#logo:visited {
+    color: #22292e;
+}
+
+#logo:hover {
+    color: #22292e;
+}
+
+#top-nav ul {
+    float: right;
+}
+
+#top-nav ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+#top-nav ul li a:link {
+    color: #22292e;
+    transition: all 0.3s ease-in-out;
+}
+
+#top-nav ul li a:visited {
+    color: #22292e;
+}
+
+#top-nav ul li a:hover {
+    color: #E63946;
+}
+
+#top-nav ul li span {
+    margin: 0 5px;
+}
+
+.sign-in {
+    padding: 3px 6px;
+    border-radius: 3px;
+    color: #fff !important;
+    font-size: 14px !important;
+}
+
+.sign-in:first-of-type {
+    background-color: #9ad4d6;
+}
+
+.sign-in:last-of-type {
+    background-color: #eb606a;
+}
+
+/* TOP MESSAGE */
+
+.top-message {
+    display: none;
+    width: 100%;
+    padding: 10px 0;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+}
+
+.top-message.error {
+    display: block;
+    background-color: #e8515c;
+}
+
+.top-message.success {
+    display: block;
+    background-color: #5dae57;
+}
+
+.top-message.message {
+    display: block;
+    background-color: #7ca2ba;
+}
+
+/* JUMBOTRONS */
+
+.jumbotron {
+    position: relative;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    color: white;
+    text-align: center;
+}
+
+.jumbotron-overlay {
+    background-color: rgba(29, 53, 87, 0.45);
+}
+
+.jumbotron-overlay.dark {
+    background-color: rgba(29, 53, 87, 0.65);
+}
+
+.jumbotron-title-container {
+    display: inline-block;
+}
+
+.large-jumbotron {
+    padding: 100px 0;
+}
+
+.large-jumbotron h1 {
+    font-size: 50px;
+}
+
+.large-jumbotron p {
+    font-size: 20px;
+}
+
+.medium-jumbotron {
+    padding: 80px 0;
+}
+
+.medium-jumbotron h1 {
+    font-size: 44px;
+    font-weight: 400;
+}
+
+.small-jumbotron {
+    padding: 15px 0;
+}
+
+.small-jumbotron h1 {
+    font-size: 38px;
+}
+
+.small-jumbotron h1 span {
+    font-weight: 400;
+}
+
+#index-jumbotron {
+    background-image: url('../images/jumbotrons/index.jpg');
+}
+
+#sign-in-jumbotron {
+    background-image: url('../images/jumbotrons/sign-in.jpg');
+}
+
+#sign-up-jumbotron {
+    background-image: url('../images/jumbotrons/sign-up.jpg');
+}
+
+#aircraft-jumbotron {
+    background-color: #457B9D;
+}
+
+#admin-panel-jumbotron {
+    background-image: url('/images/jumbotrons/admin-panel.jpg');
+}
+
+/* FORMS */
+
+.aircraft-form-container {
+    position: relative;
+    max-width: 650px;
+    margin: 50px auto 0;
+    padding: 0 15px;
+}
+
+.aircraft-form h3 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.aircraft-form h3 span {
+    font-weight: 400;
+}
+
+.aircraft-form-half-input {
+    display: inline-block !important;
+    width: calc(50% - 15px) !important;
+}
+
+.aircraft-form-half-input.left {
+    float: left;
+}
+
+.aircraft-form-half-input.right {
+    float: right;
+}
+
+.aircraft-form label {
+    display: inline-block;
+}
+
+.aircraft-form label span {
+    font-weight: 400;
+}
+
+.aircraft-form input, textarea, select {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: #EDEFF5;
+    border: 1px solid #dde0ec;
+    outline: none;
+    color: #333;
+}
+
+.aircraft-form input[type="text"]:disabled {
+    cursor: no-drop;
+}
+
+.aircraft-form textarea {
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 150px;
+    min-height: 45px;
+}
+
+.aircraft-form input[type="submit"] {
+    border: none !important;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.aircraft-form select {
+    height: 45px;
+}
+
+.aircraft-form-submit {
+    background-color: #5788a6 !important;
+    color: #fff !important;
+}
+
+.aircraft-form-submit:hover {
+    background-color: #457B9D !important;
+}
+
+.sign-in-submit {
+    background-color: #9ad4d6 !important;
+    color: #fff !important;
+}
+
+.sign-in-submit:hover {
+    background-color: #8cced0 !important;
+}
+
+.sign-up-submit {
+    background-color: #EB606A !important;
+    color: #fff !important;
+}
+
+.sign-up-submit:hover {
+    background-color: #e9515c !important;
+}

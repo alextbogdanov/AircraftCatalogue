@@ -1,0 +1,20 @@
+<!-- JUMBOTRON -->
+<div class="jumbotron" id="sign-in-jumbotron">
+    <div class="jumbotron-overlay dark">
+        <div class="jumbotron-title-container medium-jumbotron">
+            <h1>Welcome back. It's nice to see you.</h1>
+        </div>
+    </div>
+</div>
+<!-- LOGIN FORM -->
+<div class="aircraft-form-container margin-top-60">
+    <form method="POST" action="/users/login" class="aircraft-form">
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" autocomplete="off">
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" autocomplete="off">
+
+        <input type="submit" value="submit" class="sign-in-submit">
+    </form>
+</div>

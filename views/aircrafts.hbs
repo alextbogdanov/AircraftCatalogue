@@ -1,0 +1,169 @@
+<!-- MODAL -->
+<div class="modal-wrapper">
+<div class="modal-container">
+        <div class="modal-close-container"><i class="far fa-times-circle modal-close"></i></div>
+        <div class="modal">
+            <h3 class="modal-title">Airbus A340-600</h3>
+            <div class="modal-content">
+                <p><span>Aircraft spec:</span>Type</p>
+                <p><span>Value:</span>Passenger</p>
+                <p><span>Submitted by:</span>Alexander Bogdanov</p>
+                <p><span>Submitted on:</span>05/03/2019</p>
+                <p><span>Aprroved by:</span>Alexander Bogdanov</p>
+                <p><span>Approved on:</span>05/03/2019</p>
+                <p><span>Source:</span> <a href="#">source</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{{> sidenav}}
+<!-- MAIN BODY -->
+<div id="main-body">
+    <!-- JUMBOTRON -->
+    <div class="jumbotron" id="aircraft-jumbotron">
+        <div class="jumbotron-title-container small-jumbotron">
+            <h1>Aircrafts</h1>
+        </div>
+    </div>
+
+    <!-- AIRCRAFT SPECS -->
+    <h2 id="aircraft-title">{{aircraft.manufacturer_name}} {{aircraft.name}}</h2>
+    
+    <table id="aircraft-specs">
+        <tr>
+            <td class="aircraft-specs-title">Specification</td>
+            <td class="aircraft-specs-title">Value</td>
+            <td class="aircraft-specs-title">Actions</td>
+        </tr>
+        <tr>
+            <td>Manufacturer</td>
+            <td><a href="javascript:void(0)" class="aircraft-spec">{{aircraft.manufacturer_name}}</a></td>
+            <td><a href="javascript:void(0)" class="change-button disabled">Change</a> / <a href="javascript:void(0)" class="remove-button disabled">Remove</a></td>
+        </tr>
+        <tr>
+            <td>Aircraft Name</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.name}}</a></td>
+            <td><a href="javascript:void(0)" class="change-button disabled">Change</a> / <a href="javascript:void(0)" class="remove-button disabled">Remove</a></td>
+        </tr>
+        <tr>
+            <td>Family</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.family}}</a></td>
+            <td><a href="/aircrafts/change-spec/family/{{aircraft._id}}" class="change-button">Change</a> / <a href="/aircrafts/remove-spec/family/{{aircraft._id}}" class="remove-button">Remove</a></td>
+        </tr>
+        <tr>
+            <td>Type</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.type}}</a></td>
+            <td><a href="/aircrafts/change-spec/type/{{aircraft._id}}" class="change-button">Change</a> / <a href="/aircrafts/remove-spec/type/{{aircraft._id}}" class="remove-button">Remove</a></td>
+        </tr>
+        <tr>
+            <td>IATA Code</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.iata_code}}</a></td>
+            <td><a href="/aircrafts/change-spec/iata_code/{{aircraft._id}}" class="change-button">Change</a> / <a href="/aircrafts/remove-spec/iata_code/{{aircraft._id}}" class="remove-button">Remove</a></td>
+        </tr>
+        <tr>
+            <td>First Flight</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.first_flight}}</a></td>
+            <td><a href="/aircrafts/add-spec/first_flight/{{aircraft._id}}" class="add-button">Add Information</a></td>
+        </tr>
+        <tr>
+            <td>First Delivery</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.first_delivery}}</a></td>
+            <td><a href="/aircrafts/add-spec/first_delivery/{{aircraft._id}}" class="add-button">Add Information</a></td>
+        </tr>
+        <tr>
+            <td>Unit Cost</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.unit_cost}}</a></td>
+            <td><a href="/aircrafts/add-spec/unit_cost/{{aircraft._id}}" class="add-button">Add Information</a></td>
+        </tr>
+        <tr>
+            <td>Max Capacity</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.max_capacity}}</a></td>
+            <td><a href="/aircrafts/add-spec/max_capacity/{{aircraft._id}}" class="add-button">Add Information</a></td>
+        </tr>
+        <tr>
+            <td>Cockpit Crew</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.cockpit_crew}}</a></td>
+            <td><a href="/aircrafts/add-spec/cockpit_crew/{{aircraft._id}}" class="add-button">Add Information</a></td>
+        </tr>
+        <tr>
+            <td>Length</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.length}}</a></td>
+            <td><a href="/aircrafts/add-spec/length/{{aircraft._id}}" class="add-button">Add Information</a></td>
+        </tr>
+        <tr>
+            <td>Height</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.height}}</a></td>
+            <td><a href="/aircrafts/add-spec/height/{{aircraft._id}}" class="add-button">Add Information</a></td>
+        </tr>
+        <tr>
+            <td>Wingspan</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.wingspan}}</a></td>
+            <td><a href="/aircrafts/add-spec/wingspan/{{aircraft._id}}" class="add-button">Add Information</a></td>
+        </tr>
+        <tr>
+            <td>Wing Area</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.wing_area}}</a></td>
+            <td><a href="/aircrafts/add-spec/wing_area/{{aircraft._id}}" class="add-button">Add Information</a></td>
+        </tr>
+        <tr>
+            <td>Cabin Width</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.cabin_width}}</a></td>
+            <td><a href="/aircrafts/add-spec/cabin_width/{{aircraft._id}}" class="add-button">Add Information</a></td>
+        </tr>
+        <tr>
+            <td>Fuselage Width</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.fuselage_width}}</a></td>
+            <td><a href="/aircrafts/add-spec/fuselage_width/{{aircraft._id}}" class="add-button">Add Information</a></td>
+        </tr>
+        <tr>
+            <td>Maximum Speed</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.maximum_speed}}</a></td>
+            <td><a href="/aircrafts/add-spec/maximum_speed/{{aircraft._id}}" class="add-button">Add Information</a></td>
+        </tr>
+        <tr>
+            <td>Cruise Speed</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.cruise_speed}}</a></td>
+            <td><a href="/aircrafts/add-spec/cruise_speed/{{aircraft._id}}" class="add-button">Add Information</a></td>
+        </tr>
+        <tr>
+            <td>Engines</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.engines}}</a></td>
+            <td><a href="/aircrafts/add-spec/engines/{{aircraft._id}}" class="add-button">Add Information</a></td>
+        </tr>
+        <tr>
+            <td>Max Range</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.max_range}}</a></td>
+            <td><a href="/aircrafts/add-spec/max_range/{{aircraft._id}}" class="add-button">Add Information</a></td>
+        </tr>
+        <tr>
+            <td>Max Range With Max Payload</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.max_range_with_max_payload}}</a></td>
+            <td><a href="/aircrafts/add-spec/max_range_with_max_payload/{{aircraft._id}}" class="add-button">Add Information</a></td>
+        </tr>
+        <tr>
+            <td>Operating Empty Weight</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.operating_empty_weight}}</a></td>
+            <td><a href="/aircrafts/add-spec/operating_empty_weight/{{aircraft._id}}" class="add-button">Add Information</a></td>
+        </tr>
+        <tr>
+            <td>Maximum Payload</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.maximum_payload}}</a></td>
+            <td><a href="/aircrafts/add-spec/maximum_payload/{{aircraft._id}}" class="add-button">Add Information</a></td>
+        </tr>
+        <tr>
+            <td>Maximum Takeoff Weight</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.maximum_takeoff_weight}}</a></td>
+            <td><a href="/aircrafts/add-spec/maximum_takeoff_weight/{{aircraft._id}}" class="add-button">Add Information</a></td>
+        </tr>
+        <tr>
+            <td>Maximum Landing Weight</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.maximum_landing_weight}}</a></td>
+            <td><a href="/aircrafts/add-spec/maximum_landing_weight/{{aircraft._id}}" class="add-button">Add Information</a></td>
+        </tr>
+        <tr>
+            <td>Standard Fuel Capacity</td>
+            <td><a href="#" class="aircraft-spec">{{aircraft.standard_fuel_capacity}}</a></td>
+            <td><a href="/aircrafts/add-spec/standard_fuel_capacity/{{aircraft._id}}" class="add-button">Add Information</a></td>
+        </tr>
+    </table>
+</div>

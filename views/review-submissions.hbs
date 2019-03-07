@@ -1,0 +1,30 @@
+<!-- JUMBOTRON -->
+<div class="jumbotron" id="admin-panel-jumbotron">
+    <div class="jumbotron-overlay dark">
+        <div class="jumbotron-title-container medium-jumbotron">
+            <h1>Administration Panel</h1>
+        </div>
+    </div>
+</div>
+<!-- ADD INFORMATION SUBMISSIONS -->
+<div class="submissions-wrapper">
+    <h3>Add Information Submissions</h3>
+    <table>
+        <tr class="submission-table-titles">
+            <td>AircraftID</td>
+            <td>Aircraft Spec</td>
+            <td>Value</td>
+            <td>Source</td>
+            <td>Status</td>
+        </tr>
+        {{#each submissions}}
+        <tr>
+            <td>{{this.aircraft}}</td>
+            <td>{{this.aircraft_spec}}</td>
+            <td>{{this.value}}</td>
+            <td>{{this.source}}</td>
+            <td>{{this.status}}</td>
+        </tr>
+        {{/each}}
+    </table>
+</div>
