@@ -113,7 +113,7 @@ router.get('/change-spec/:spec_type/:aircraft_id', ensureAuthenticated, (req, re
 
 // Change Aircraft Spec Functionality
 router.post('/change-spec/:spec_type/:aircraft_id', ensureAuthenticated, (req, res) => {
-    const aircraftId = req.body.aircraft_id
+    const aircraftId = req.params.aircraft_id
     const aircraftSpec = req.body.aircraft_spec
     const value = req.body.new_value
     const source = req.body.source
@@ -160,7 +160,7 @@ router.get('/remove-spec/:spec_type/:aircraft_id', ensureAuthenticated, (req, re
 
 // Remove Aircraft Spec Functionality
 router.post('/remove-spec/:spec_type/:aircraft_id', ensureAuthenticated, (req, res) => {
-    const aircraftId = req.body.aircraft_id
+    const aircraftId = req.params.aircraft_id
     const aircraftSpec = req.body.aircraft_spec
     const value = req.body.explanation
     const source = req.body.source

@@ -17,7 +17,53 @@
             <td>Source</td>
             <td>Status</td>
         </tr>
-        {{#each submissions}}
+        {{#each addSubmissions}}
+        <tr>
+            <td>{{this.aircraft}}</td>
+            <td>{{this.aircraft_spec}}</td>
+            <td>{{this.value}}</td>
+            <td>{{this.source}}</td>
+            <td>{{this.status}}</td>
+        </tr>
+        {{/each}}
+    </table>
+</div>
+
+<!-- CHANGE INFORMATION SUBMISSIONS -->
+<div class="submissions-wrapper">
+    <h3>Change Information Submissions</h3>
+    <table>
+        <tr class="submission-table-titles">
+            <td>AircraftID</td>
+            <td>Aircraft Spec</td>
+            <td>Value</td>
+            <td>Source</td>
+            <td>Status</td>
+        </tr>
+        {{#each changeSubmittions}}
+        <tr>
+            <td>{{this.aircraft}}</td>
+            <td>{{this.aircraft_spec}}</td>
+            <td>{{this.value}}</td>
+            <td>{{this.source}}</td>
+            <td>{{this.status}}</td>
+        </tr>
+        {{/each}}
+    </table>
+</div>
+
+<!-- REMOVE INFORMATION SUBMISSIONS -->
+<div class="submissions-wrapper">
+    <h3>Remove Information Submissions</h3>
+    <table>
+        <tr class="submission-table-titles">
+            <td>AircraftID</td>
+            <td>Aircraft Spec</td>
+            <td>Value</td>
+            <td>Source</td>
+            <td>Status</td>
+        </tr>
+        {{#each removeSubmittions}}
         <tr>
             <td>{{this.aircraft}}</td>
             <td>{{this.aircraft_spec}}</td>

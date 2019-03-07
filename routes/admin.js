@@ -107,15 +107,31 @@ router.post('/add-aircraft', ensureAuthenticated, (req, res) => {
 })
 
 // Render Review Submitions
-router.get('/review-submissions', ensureAuthenticated, (req, res) => {
-    Submission.find({"type": "add-information"}, (err, submissions) => {
+router.get('/review-submissions', (req, res) => {
+    Submission.find({"type": "add-information"}, (err, addSubmissions) => {
         if(err) {
             console.log(err)
             req.flash('error', 'An error occured, please try again')
             res.redirect('/admin')
         }
-        
-        res.render('review-submissions', {submissions})
+
+        Submission.find({"type": "change-information"}, (err, changeSubmittions) => {
+            if(err) {
+                console.log(err)
+                req.flash('error', 'An error occured, please try again')
+                res.redirect('/admin')
+            }
+
+            Submission.find({"type": "remove-information"}, (err, removeSubmittions) => {
+                if(err) {
+                    console.log(err)
+                    req.flash('error', 'An error occured, please try again')
+                    res.redirect('/admin')
+                }
+
+                res.render('review-submissions', {addSubmissions, changeSubmittions, removeSubmittions})
+            })
+        })
     })
 })
 
