@@ -9,6 +9,7 @@
     border-left: 2px solid #F1FAEE;
     box-sizing: border-box;
     padding: 30px 30px;
+    background-color: #fff;
 }
 
 #side-nav.fixed {
@@ -17,21 +18,9 @@
     right: 0;
 }
 
-.temp-aircraft:link {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 10px;
-    font-size: 18px;
-    color: #333;
-}
-
-.temp-aircraft:visited {
-    color: #333;
-}
-
 .manufacturer {
     font-weight: 600;
-    font-size: 18px;
+    font-size: 20px;
     margin-top: 5px;
     cursor: pointer;
 }
@@ -60,6 +49,15 @@
 
 .manufacturer-models.hidden {
     display: none;
+}
+
+.aircraft-model:link {
+    color: #333;
+    font-size: 18px;
+}
+
+.aircraft-model:visited {
+    color: #333;
 }
 
 /* MAIN BODY */

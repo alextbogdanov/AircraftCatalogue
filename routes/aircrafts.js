@@ -12,40 +12,61 @@ let Aircraft = require('../models/aircraft')
 // Bring in Submission Model
 let Submission = require('../models/submission')
 
+//  Load Side-Nav Data
+async function loadSideNav() {
+    let manufacturers = await Manufacturer.find({}, (err) => {
+        if(err) {
+            console.log(err)
+            req.flash('error', 'No manufacturers were found')
+            res.redirect('/')
+        }
+    })
+    let allAircrafts = {}
+
+    for(let key in manufacturers) {
+        let manufacturer = manufacturers[key].name
+
+        let manufacturerAircrafts = await Aircraft.find({manufacturer_name: manufacturer}, {name: 1, _id: 1}, (err) => {
+            if(err) {
+                console.log(err)
+                req.flash('error', 'No aircrafts were found')
+                res.redirect('/')
+            }
+        })
+
+        allAircrafts[manufacturer] = manufacturerAircrafts
+    }
+    
+    return allAircrafts
+}
+
 // Render Aircrafts Page
-router.get('/', (req, res) => {
-    Aircraft.find({}, function(err, aircrafts) {
+router.get('/', async(req, res) => {
+    let aircraft = await Aircraft.findOne({}, (err) => {
         if(err) {
             console.log(err)
             req.flash('error', 'No aircrafts were found')
             res.redirect('/')
         }
-        
-        let firstAircraft = aircrafts[0]
-
-        res.render('aircrafts', { expressFlash: req.flash(), sessionFlash: res.locals.sessionFlash, aircrafts, aircraft: firstAircraft})
     })
+
+    let allAircrafts = await loadSideNav()
+    res.render('aircrafts', { expressFlash: req.flash(), sessionFlash: res.locals.sessionFlash, allAircrafts, aircraft})
 })
 
 // Get Current Aircraft
-router.get('/model/:id', (req, res) => {
-    Aircraft.findById(req.params.id, (err, aircraft) => {
+router.get('/model/:id', async(req, res) => {
+    let aircraft = await Aircraft.findById(req.params.id, (err) => {
         if(err) {
             console.log(err)
-            req.flash('error', 'No aircraft was found with given ID')
+            req.flash('error', 'No aircraft was found with the given id')
             res.redirect('/aircrafts')
         }
-
-        Aircraft.find({}, function(err, aircrafts) {
-            if(err) {
-                console.log('err')
-                req.flash('error', 'No aircrafts were found')
-                res.redirect('/aircrafts')
-            }
-            
-            res.render('aircrafts', { expressFlash: req.flash(), sessionFlash: res.locals.sessionFlash, aircrafts, aircraft})
-        })
     })
+
+    let allAircrafts = await loadSideNav()
+
+    res.render('aircrafts', { expressFlash: req.flash(), sessionFlash: res.locals.sessionFlash, aircraft, allAircrafts})
 })
 
 // Render Add Aircraft Spec
