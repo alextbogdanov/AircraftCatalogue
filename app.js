@@ -77,17 +77,15 @@ app.get('*', function(req, res, next) {
 
 // Set Up HandleBars
 const hbs = exphbs.create({
-  helpers: {
-    if_eq: function(a, b, opts) { if (a == b) { return opts.fn(this) } else { return opts.inverse(this) }}
-  },
   defaultLayout: 'main',
   extname: '.hbs',
-  layoutsDir: __dirname + '/views/layouts'
+  layoutsDir: __dirname + '/views/layouts',
+  helpers: require('./helpers/ifeq-ifnoteq.js')
 })
 
 app.engine('hbs', hbs.engine);
 app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'hbs');
+app.set('view engine', 'hbs')
 
 // Use css, images & js files
 app.use(express.static(path.join(__dirname, '/public')))

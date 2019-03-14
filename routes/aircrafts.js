@@ -12,7 +12,7 @@ let Aircraft = require('../models/aircraft')
 // Bring in Submission Model
 let Submission = require('../models/submission')
 
-//  Load Side-Nav Data
+//  Load Side-Nav Data Function
 async function loadSideNav() {
     let manufacturers = await Manufacturer.find({}, (err) => {
         if(err) {
@@ -36,7 +36,7 @@ async function loadSideNav() {
 
         allAircrafts[manufacturer] = manufacturerAircrafts
     }
-    
+
     return allAircrafts
 }
 

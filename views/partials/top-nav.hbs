@@ -6,9 +6,9 @@
             <a href="/aircrafts">Aircrafts</a>
         </li><li>
             <a href="/about">About</a>
-        </li>{{#if_eq user.role "admin"}}<li>
+        </li>{{#ifeq user.role "admin"}}<li>
             <a href="/admin">Admin Panel</a>
-        {{/if_eq}}</li>{{#if user}}<li>
+        {{/ifeq}}</li>{{#if user}}<li>
                 <a href="/users/my-profile">My Profile</a>
         </li><li>
                 <a href="/users/logout">Logout</a>

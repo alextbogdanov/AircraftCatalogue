@@ -1,0 +1,9 @@
+{{#ifeq spec ""}}
+    <td><a href="#" class="aircraft-spec">{{spec}}</a></td>
+    <td><a href="/aircrafts/add-spec/{{ref}}/{{aircraft._id}}" class="add-button">Add Information</a></td>
+{{/ifeq}}
+
+{{#ifnoteq spec ""}}
+    <td><a href="#" class="aircraft-spec">{{spec}}</a></td>
+    <td><a href="/aircrafts/change-spec/{{ref}}/{{aircraft._id}}" class="change-button">Change</a> / <a href="/aircrafts/remove-spec/{{ref}}/{{aircraft._id}}" class="remove-button">Remove</a></td>
+{{/ifnoteq}}
