@@ -97,6 +97,7 @@ app.use('/aircrafts/change-spec/:spec_type/:aircraft_id', express.static(path.jo
 app.use('/aircrafts/remove-spec/:spec_type/:aircraft_id', express.static(path.join(__dirname, 'public')))
 app.use('/aircrafts/model', express.static(path.join(__dirname, 'public')))
 app.use('/admin', express.static(path.join(__dirname, 'public')))
+app.use('/admin/add-submissions/:id', express.static(path.join(__dirname, 'public')))
 
 // Import Routes
 const users = require('./routes/users')

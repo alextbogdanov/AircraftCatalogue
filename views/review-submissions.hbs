@@ -11,19 +11,19 @@
     <h3>Add Information Submissions</h3>
     <table>
         <tr class="submission-table-titles">
-            <td>AircraftID</td>
+            <td>Aircraft</td>
             <td>Aircraft Spec</td>
             <td>Value</td>
-            <td>Source</td>
             <td>Status</td>
+            <td>Action</td>
         </tr>
         {{#each addSubmissions}}
         <tr>
             <td>{{this.aircraft}}</td>
             <td>{{this.aircraft_spec}}</td>
             <td>{{this.value}}</td>
-            <td>{{this.source}}</td>
             <td>{{this.status}}</td>
+            <td><a href="/admin/add-submissions/{{this._id}}" class="submission-verify-button">Verify</a></td>
         </tr>
         {{/each}}
     </table>
@@ -34,19 +34,19 @@
     <h3>Change Information Submissions</h3>
     <table>
         <tr class="submission-table-titles">
-            <td>AircraftID</td>
+            <td>Aircraft</td>
             <td>Aircraft Spec</td>
             <td>Value</td>
-            <td>Source</td>
             <td>Status</td>
+            <td>Action</td>
         </tr>
         {{#each changeSubmittions}}
         <tr>
             <td>{{this.aircraft}}</td>
             <td>{{this.aircraft_spec}}</td>
             <td>{{this.value}}</td>
-            <td>{{this.source}}</td>
             <td>{{this.status}}</td>
+            <td><a href="#" class="submission-verify-button">Verify</a></td>
         </tr>
         {{/each}}
     </table>
@@ -57,19 +57,19 @@
     <h3>Remove Information Submissions</h3>
     <table>
         <tr class="submission-table-titles">
-            <td>AircraftID</td>
+            <td>Aircraft</td>
             <td>Aircraft Spec</td>
             <td>Value</td>
-            <td>Source</td>
             <td>Status</td>
+            <td>Action</td>
         </tr>
         {{#each removeSubmittions}}
         <tr>
             <td>{{this.aircraft}}</td>
             <td>{{this.aircraft_spec}}</td>
             <td>{{this.value}}</td>
-            <td>{{this.source}}</td>
             <td>{{this.status}}</td>
+            <td><a href="#" class="submission-verify-button">Verify</a></td>
         </tr>
         {{/each}}
     </table>

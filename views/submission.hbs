@@ -1,0 +1,75 @@
+<!-- JUMBOTRON -->
+<div class="jumbotron" id="admin-panel-jumbotron">
+    <div class="jumbotron-overlay dark">
+        <div class="jumbotron-title-container medium-jumbotron">
+            <h1>Administration Panel</h1>
+        </div>
+    </div>
+</div>
+
+<!-- SUBMISSION FORM -->
+<div class="aircraft-form-container margin-top-60">
+    <form method="POST" action="/admin/{{submissionType}}/{{submission._id}}" class="aircraft-form">
+        <h3>
+            {{#ifeq submissionType "add-submission"}}
+                Add Submission
+            {{/ifeq}}
+            {{#ifeq submissionType "change-submission"}}
+                Change Submission
+            {{/ifeq}}
+            {{#ifeq submissionType "remove-submission"}}
+                Remove Submission
+            {{/ifeq}}
+        </h3>
+
+        <div class="aircraft-form-half-input left">
+            <label for="submission-id">Submission ID:</label>
+            <input type="text" name="submission_id" id="submission-id" value="{{submission._id}}" autocomplete="off">
+        </div>
+
+        <div class="aircraft-form-half-input right">
+            <label for="submission-type">Submission Type:</label>
+            <input type="text" name="type" id="submission_type" value="{{submission.type}}" autocomplete="off">
+        </div>
+
+        <label for="aircraft-spec">Aircraft Specification:</label>
+        <input type="aircraft-spec" name="aircraft_spec" id="aircraft-spec" value="{{submission.aircraft_spec}}" autocomplete="off">
+
+        <div class="aircraft-form-half-input left">
+            <label for="aircraft-id">Aircraft ID:</label>
+            <input type="text" name="aircraft_id" id="aircraft-id" value="{{submission.aircraft}}" autocomplete="off">
+        </div>
+
+        <div class="aircraft-form-half-input right">
+            <label for="aircraft-name">Aircraft Name:</label>
+            <input type="text" name="aircraft_name" id="aircraft-name" value="{{aircraftName}}" autocomplete="off">
+        </div>
+
+        {{#ifeq submissionType "change-submission"}}
+            <label for="submission-old-value">Old Value:</label>
+            <input type="text" name="old_value" id="submission-old-value" autocomplete="off">
+        {{/ifeq}}
+        {{#ifeq submissionType "remove-submission"}}
+            <label for="submission-old-value">Old Value:</label>
+            <input type="text" name="old_value" id="submission-old-value" autocomplete="off">
+        {{/ifeq}}
+
+        <label for="submission-value">New Value:</label>
+        <input type="text" name="value" id="submission-value" value="{{submission.value}}" autocomplete="off">
+
+        <label for="submission-source">Source:</label>
+        <input type="text" name="source" id="submission-source" value="{{submission.source}}" autocomplete="off">
+
+        <label for="submission-status">Status:</label>
+        <input type="text" name="status" id="submission-status" value="{{submission.status}}" autocomplete="off">
+
+        <label for="submission-action">Action:</label>
+        <select name="action" id="submission-action">
+            <option value="view">View</option>
+            <option value="approve">Approve</option>
+            <option value="reject">Reject</option>
+        </select>
+
+        <input type="submit" value="submit" class="sign-in-submit">
+    </form>
+</div>

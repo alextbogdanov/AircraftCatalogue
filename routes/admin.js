@@ -107,32 +107,82 @@ router.post('/add-aircraft', ensureAuthenticated, (req, res) => {
 })
 
 // Render Review Submitions
-router.get('/review-submissions', (req, res) => {
-    Submission.find({"type": "add-information"}, (err, addSubmissions) => {
+router.get('/review-submissions', async(req, res) => {
+    let addSubmissions = await Submission.find({"type": "add-information"}, (err) => {
         if(err) {
             console.log(err)
-            req.flash('error', 'An error occured, please try again')
+            req.flash('error', 'No "add submissions" were found')
             res.redirect('/admin')
         }
-
-        Submission.find({"type": "change-information"}, (err, changeSubmittions) => {
-            if(err) {
-                console.log(err)
-                req.flash('error', 'An error occured, please try again')
-                res.redirect('/admin')
-            }
-
-            Submission.find({"type": "remove-information"}, (err, removeSubmittions) => {
-                if(err) {
-                    console.log(err)
-                    req.flash('error', 'An error occured, please try again')
-                    res.redirect('/admin')
-                }
-
-                res.render('review-submissions', {addSubmissions, changeSubmittions, removeSubmittions})
-            })
-        })
     })
+
+    // for(let addKey in addSubmissions) {
+    //     let currentAddSubmissionAircraft = addSubmissions[addKey].aircraft
+
+    //     let addSubmissionAircraft = await Aircraft.findById(currentAddSubmissionAircraft, {name: 1}, (err) => {
+    //         if(err) {
+    //             console.log(err)
+    //             req.flash('error', 'No aircraft was found with the given ID')
+    //             res.redirect('/admin')
+    //         }
+    //     })
+    
+    //     addSubmissions[addKey].aircraft = addSubmissionAircraft.name
+    // }
+
+    let changeSubmittions = await Submission.find({"type": "change-information"}, (err) => {
+        if(err) {
+            console.log(err)
+            req.flash('error', 'No "change submissions" were found')
+            res.redirect('/admin')
+        }
+    })
+
+    let removeSubmittions = await Submission.find({"type": "remove-information"}, (err) => {
+        if(err) {
+            console.log(err)
+            req.flash('error', 'No "remove submissions" were found')
+            res.redirect('/admin')
+        }
+    })
+
+    res.render('review-submissions', {addSubmissions, changeSubmittions, removeSubmittions})
+})
+
+router.get('/add-submissions/:id', async(req, res) => {
+    let submissionId = req.params.id
+    let submissionType = 'add-submission'
+
+    let submission = await Submission.findById(submissionId, (err) => {
+        if(err) {
+            console.log(err)
+            req.flash('error', 'No submission was found with the given id')
+            res.redirect('/admin')
+        }
+    })
+
+    let aircraft = await Aircraft.findById(submission.aircraft, {name: 1}, (err) => {
+        if(err) {
+            console.log(err)
+            req.flash('error', 'No aircraft was found with the given id')
+            res.redirect('/admin')
+        }
+    })
+
+    let aircraftName = aircraft.name
+
+    res.render('submission', {submission, submissionType, aircraftName})
+})
+
+router.post('/add-submission/:id', async(req, res) => {
+    const submissionId = req.body.submission_id
+    const aircraftId = req.body.aircraft_id
+    const aircraftSpec = req.body.aircraft_spec
+    const action = req.body.action
+
+    if(action == "approve") {
+        
+    }
 })
 
 module.exports = router

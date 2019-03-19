@@ -51,9 +51,23 @@
     background-color: #eee;
 }
 
-
-
 .submissions-wrapper table tr td {
     text-align: center;
     padding: 10px;
+}
+
+.submission-verify-button:link {
+    background-color: #5dae57;
+    color: #fff;
+    border-radius: 3px;
+    padding: 3px 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.submission-verify-button:visited {
+    color: #fff;
+}
+
+.submission-verify-button:hover {
+    background-color: #4d9548;
 }
