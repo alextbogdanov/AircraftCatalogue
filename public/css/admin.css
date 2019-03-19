@@ -56,18 +56,30 @@
     padding: 10px;
 }
 
-.submission-verify-button:link {
-    background-color: #5dae57;
+.submission-button:link {
     color: #fff;
     border-radius: 3px;
     padding: 3px 5px;
     transition: all 0.3s ease-in-out;
 }
 
-.submission-verify-button:visited {
-    color: #fff;
+.submission-button.review {
+    background-color: #5dae57;
 }
 
-.submission-verify-button:hover {
+.submission-button.view {
+    background-color: #72c3c6;
+    padding: 3px 14px !important;
+}
+
+.submission-button.review:hover {
     background-color: #4d9548;
+}
+
+.submission-button.view:hover {
+    background-color: #4bb2b6;
+}
+
+.submission-button:visited {
+    color: #fff;
 }

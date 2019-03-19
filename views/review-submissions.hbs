@@ -23,7 +23,12 @@
             <td>{{this.aircraft_spec}}</td>
             <td>{{this.value}}</td>
             <td>{{this.status}}</td>
-            <td><a href="/admin/add-submissions/{{this._id}}" class="submission-verify-button">Verify</a></td>
+            {{#ifeq this.status "pending"}}
+                <td><a href="/admin/add-submissions/{{this._id}}" class="submission-button review">Review</a></td>
+            {{/ifeq}}
+            {{#ifeq this.status "approved"}}
+                <td><a href="/admin/add-submissions/{{this._id}}" class="submission-button view">View</a></td>
+            {{/ifeq}}
         </tr>
         {{/each}}
     </table>

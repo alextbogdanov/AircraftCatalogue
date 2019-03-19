@@ -178,10 +178,28 @@ router.post('/add-submission/:id', async(req, res) => {
     const submissionId = req.body.submission_id
     const aircraftId = req.body.aircraft_id
     const aircraftSpec = req.body.aircraft_spec
+    const value = req.body.value
     const action = req.body.action
 
     if(action == "approve") {
-        
+        let newAircraft = {}
+        newAircraft[aircraftSpec] = value
+
+        await Aircraft.updateOne({_id: aircraftId}, newAircraft, function(err, numberAffected, rawResponse) {
+            if(err) {
+                console.log(err)
+            }
+        })
+
+        await Submission.updateOne({_id: submissionId}, {
+            status: 'approved'
+        }, function(err, numberAffected, rawResponse) {
+            if(err) {
+                console.log(err)
+            }
+        })
+
+        res.redirect(`/aircrafts/model/${aircraftId}`)
     }
 })
 
