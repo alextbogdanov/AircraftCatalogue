@@ -114,21 +114,21 @@ router.get('/review-submissions', async(req, res) => {
             req.flash('error', 'No "add submissions" were found')
             res.redirect('/admin')
         }
-    })
+    }).lean().exec()
 
-    // for(let addKey in addSubmissions) {
-    //     let currentAddSubmissionAircraft = addSubmissions[addKey].aircraft
+    for(let addKey in addSubmissions) {
+        let currentAddSubmissionAircraft = addSubmissions[addKey].aircraft
 
-    //     let addSubmissionAircraft = await Aircraft.findById(currentAddSubmissionAircraft, {name: 1}, (err) => {
-    //         if(err) {
-    //             console.log(err)
-    //             req.flash('error', 'No aircraft was found with the given ID')
-    //             res.redirect('/admin')
-    //         }
-    //     })
-    
-    //     addSubmissions[addKey].aircraft = addSubmissionAircraft.name
-    // }
+        let addSubmissionAircraft = await Aircraft.findById(currentAddSubmissionAircraft, {name: 1}, (err, aircraft) => {
+            if(err) {
+                console.log(err)
+                req.flash('error', 'No aircraft was found with the given ID')
+                res.redirect('/admin')
+            }
+            
+            addSubmissions[addKey].aircraft_name = aircraft.name
+        })
+    }
 
     let changeSubmittions = await Submission.find({"type": "change-information"}, (err) => {
         if(err) {
