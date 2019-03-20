@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="css/profile.css" />
     <link rel="stylesheet" type="text/css" href="css/admin.css" />
 </head>
-<body>
+<body {{#ifeq openModal "yes"}}class="toggled"{{/ifeq}}>
     {{> top-nav}}
     {{> top-message}}
     {{{body}}}

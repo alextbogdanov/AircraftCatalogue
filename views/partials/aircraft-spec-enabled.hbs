@@ -4,6 +4,7 @@
 {{/ifeq}}
 
 {{#ifnoteq spec ""}}
-    <td><a href="#" class="aircraft-spec">{{spec}}</a></td>
+    <td>{{spec}}<a href="/aircrafts/model/{{aircraft._id}}/{{ref}}" class="aircraft-spec"><i class="fa fa-question-circle" aria-hidden="true"></i>
+</a></td>
     <td><a href="/aircrafts/change-spec/{{ref}}/{{aircraft._id}}" class="change-button">Change</a> / <a href="/aircrafts/remove-spec/{{ref}}/{{aircraft._id}}" class="remove-button">Remove</a></td>
 {{/ifnoteq}}

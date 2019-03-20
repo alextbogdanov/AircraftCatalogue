@@ -26,7 +26,8 @@ $(window).scroll(function() {
 })
 
 /* OPEN MODAL */
-
-$('.aircraft-spec').click(function() {
-    openModal()
+$(document).ready(function() {
+    if($('body').hasClass('toggled')) {
+        openModal()
+    }
 })

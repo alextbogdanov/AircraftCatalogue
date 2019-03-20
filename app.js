@@ -96,6 +96,7 @@ app.use('/aircrafts/add-spec/:spec_type/:aircraft_id', express.static(path.join(
 app.use('/aircrafts/change-spec/:spec_type/:aircraft_id', express.static(path.join(__dirname, 'public')))
 app.use('/aircrafts/remove-spec/:spec_type/:aircraft_id', express.static(path.join(__dirname, 'public')))
 app.use('/aircrafts/model', express.static(path.join(__dirname, 'public')))
+app.use('/aircrafts/model/:id/:spec', express.static(path.join(__dirname, 'public')))
 app.use('/admin', express.static(path.join(__dirname, 'public')))
 app.use('/admin/add-submissions/:id', express.static(path.join(__dirname, 'public')))
 

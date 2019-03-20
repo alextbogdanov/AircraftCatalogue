@@ -1,0 +1,22 @@
+<!-- MODAL -->
+{{#ifeq openModal "yes"}}
+    <div class="modal-wrapper">
+    <div class="modal-container">
+            <div class="modal-close-container"><i class="far fa-times-circle modal-close"></i></div>
+            <div class="modal">
+                <h3 class="modal-title">{{aircraft.manufacturer_name}} {{aircraft.name}}</h3>
+                <div class="modal-content">
+                    {{#each newestSubmission}}
+                        <p><span>Aircraft spec:</span>{{this.aircraft_spec}}</p>
+                        <p><span>Value:</span>{{this.value}}</p>
+                        <p><span>Submitted by:</span>{{this.username}}</p>
+                        <p><span>Submitted on:</span>{{this.readableDate}}</p>
+                        <p><span>Aprroved by:</span></p>
+                        <p><span>Approved on:</span></p>
+                        <p><span>Source:</span> <a href="{{this.source}}" target="_blank">visit source</a></p>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+{{/ifeq}}
