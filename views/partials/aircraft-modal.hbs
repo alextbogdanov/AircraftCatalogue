@@ -6,15 +6,13 @@
             <div class="modal">
                 <h3 class="modal-title">{{aircraft.manufacturer_name}} {{aircraft.name}}</h3>
                 <div class="modal-content">
-                    {{#each newestSubmission}}
-                        <p><span>Aircraft spec:</span>{{this.aircraft_spec}}</p>
-                        <p><span>Value:</span>{{this.value}}</p>
-                        <p><span>Submitted by:</span>{{this.username}}</p>
-                        <p><span>Submitted on:</span>{{this.readableDate}}</p>
-                        <p><span>Aprroved by:</span></p>
-                        <p><span>Approved on:</span></p>
-                        <p><span>Source:</span> <a href="{{this.source}}" target="_blank">visit source</a></p>
-                    {{/each}}
+                    <p><span>Aircraft spec:</span>{{newestSubmission.aircraft_spec}}</p>
+                    <p><span>Value:</span>{{newestSubmission.value}}</p>
+                    <p><span>Submitted by:</span>{{newestSubmission.username}}</p>
+                    <p><span>Submitted on:</span>{{newestSubmission.readableDate}}</p>
+                    <p><span>Aprroved by:</span></p>
+                    <p><span>Approved on:</span></p>
+                    <p><span>Source:</span> <a href="{{newestSubmission.source}}" target="_blank">visit source</a></p>
                 </div>
             </div>
         </div>

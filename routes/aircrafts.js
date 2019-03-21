@@ -85,16 +85,18 @@ router.get('/model/:id/:spec', async(req, res) => {
         }
     })
 
-    let newestSubmission = await Submission.find({aircraft: aircraftId, aircraft_spec: spec}, (err) => {
-        if(err) {
-            console.log(err)
-            req.flash('error', 'No spec was found with the given name or no aircraft was found')
-            res.redirect('/aircrafts')
-        }
-    }).sort({ 'date_created' : -1 }).lean().exec()
+    let newestSubmissions = await Submission.find(
+        {aircraft: aircraftId, aircraft_spec: spec, $or: [{type: "add-information" }, {type: "change-information"}], status: "approved"},
+        (err) => {
+            if(err) {
+                console.log(err)
+                req.flash('error', 'No spec was found with the given name or no aircraft was found')
+                res.redirect('/aircrafts')
+            }
+        }).sort({ 'date_created' : -1 }).lean().exec()
 
-    for(let key in newestSubmission) {
-        let userId = newestSubmission[key].user
+    for(let key in newestSubmissions) {
+        let userId = newestSubmissions[key].user
 
         let currentUser = await User.findById(userId, (err) => {
             if(err) {
@@ -105,15 +107,17 @@ router.get('/model/:id/:spec', async(req, res) => {
         })
 
         let username = currentUser.username
-        let readableDate = (newestSubmission[key].date_created).toDateString()
+        let readableDate = (newestSubmissions[key].date_created).toDateString()
 
-        newestSubmission[key].username = username
-        newestSubmission[key].readableDate = readableDate
+        newestSubmissions[key].username = username
+        newestSubmissions[key].readableDate = readableDate
     }
+
+    let newestSubmission = newestSubmissions[0]
 
     let allAircrafts = await loadSideNav()
 
-    res.render('aircrafts', { expressFlash: req.flash(), sessionFlash: res.locals.sessionFlash, aircraft, allAircrafts, newestSubmission, openModal: "yes",})    
+    res.render('aircrafts', { expressFlash: req.flash(), sessionFlash: res.locals.sessionFlash, aircraft, allAircrafts, newestSubmission, openModal: "yes"})    
 })
 
 // Render Add Aircraft Spec
