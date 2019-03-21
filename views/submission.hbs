@@ -63,13 +63,17 @@
         <label for="submission-status">Status:</label>
         <input type="text" name="status" id="submission-status" value="{{submission.status}}" autocomplete="off">
 
-        <label for="submission-action">Action:</label>
-        <select name="action" id="submission-action">
-            <option value="view">View</option>
-            <option value="approve">Approve</option>
-            <option value="reject">Reject</option>
-        </select>
+        {{#ifeq submission.status "pending"}}
+            <label for="submission-action">Action:</label>
+            <select name="action" id="submission-action">
+                <option value="view">View</option>
+                <option value="approve">Approve</option>
+                <option value="reject">Reject</option>
+            </select>
 
-        <input type="submit" value="submit" class="sign-in-submit">
+            <input type="submit" value="submit" class="sign-in-submit">
+        {{else}}
+            <a href="/admin/review-submissions" class="sign-in-submit">Go back</a>
+        {{/ifeq}}  
     </form>
 </div>

@@ -407,6 +407,22 @@ ul, ol, li {
     background-color: #8cced0 !important;
 }
 
+a.sign-in-submit:link {
+    background-color: #9ad4d6 !important;
+    color: #fff !important;
+    display: block;
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    font-size: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+a.sign-in-submit:visited {
+    background-color: #9ad4d6 !important;
+    color: #fff !important;
+}
+
 .sign-up-submit {
     background-color: #EB606A !important;
     color: #fff !important;

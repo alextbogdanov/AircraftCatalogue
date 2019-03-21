@@ -149,6 +149,7 @@ router.get('/review-submissions', async(req, res) => {
     res.render('review-submissions', {addSubmissions, changeSubmittions, removeSubmittions})
 })
 
+// Render Add Submission Form
 router.get('/add-submissions/:id', async(req, res) => {
     let submissionId = req.params.id
     let submissionType = 'add-submission'
@@ -174,6 +175,7 @@ router.get('/add-submissions/:id', async(req, res) => {
     res.render('submission', {submission, submissionType, aircraftName})
 })
 
+// Add Submission Functionality
 router.post('/add-submission/:id', async(req, res) => {
     const submissionId = req.body.submission_id
     const aircraftId = req.body.aircraft_id
@@ -200,6 +202,8 @@ router.post('/add-submission/:id', async(req, res) => {
         })
 
         res.redirect(`/aircrafts/model/${aircraftId}`)
+    } else if(action == "view") {
+        res.redirect('/admin/review-submissions')
     }
 })
 
