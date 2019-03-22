@@ -45,17 +45,18 @@
             <input type="text" name="aircraft_name" id="aircraft-name" value="{{aircraftName}}" autocomplete="off">
         </div>
 
-        {{#ifeq submissionType "change-submission"}}
-            <label for="submission-old-value">Old Value:</label>
-            <input type="text" name="old_value" id="submission-old-value" autocomplete="off">
-        {{/ifeq}}
-        {{#ifeq submissionType "remove-submission"}}
-            <label for="submission-old-value">Old Value:</label>
-            <input type="text" name="old_value" id="submission-old-value" autocomplete="off">
-        {{/ifeq}}
+        {{#ifnoteq submissionType "add-submission"}}
+            <label for="current-value">Current Value:</label>
+            <input type="text" name="current_value" id="current-value" value="{{currentValue}}" autocomplete="off">
+        {{/ifnoteq}}
 
-        <label for="submission-value">New Value:</label>
-        <input type="text" name="value" id="submission-value" value="{{submission.value}}" autocomplete="off">
+        {{#ifnoteq submissionType "remove-submission"}}
+            <label for="submission-value">New Value:</label>
+            <input type="text" name="value" id="submission-value" value="{{submission.value}}" autocomplete="off">
+        {{else}}
+            <label for="submission-explanation">Explanation:</label>
+            <input type="text" name="submission_explanation" id="submission-explanation" value="{{submission.value}}" autocomplete="off">
+        {{/ifnoteq}}
 
         <label for="submission-source">Source:</label>
         <input type="text" name="source" id="submission-source" value="{{submission.source}}" autocomplete="off">

@@ -8,7 +8,7 @@
 </div>
 <!-- ADD INFORMATION SUBMISSIONS -->
 <div class="submissions-wrapper">
-    <h3>Add Information Submissions</h3>
+    <h3>Pending "Add-Information" Submissions</h3>
     <table>
         <tr class="submission-table-titles">
             <td>Aircraft</td>
@@ -26,9 +26,6 @@
             {{#ifeq this.status "pending"}}
                 <td><a href="/admin/add-submissions/{{this._id}}" class="submission-button review">Review</a></td>
             {{/ifeq}}
-            {{#ifeq this.status "approved"}}
-                <td><a href="/admin/add-submissions/{{this._id}}" class="submission-button view">View</a></td>
-            {{/ifeq}}
         </tr>
         {{/each}}
     </table>
@@ -36,7 +33,7 @@
 
 <!-- CHANGE INFORMATION SUBMISSIONS -->
 <div class="submissions-wrapper">
-    <h3>Change Information Submissions</h3>
+    <h3>Pending "Change-Information" Submissions</h3>
     <table>
         <tr class="submission-table-titles">
             <td>Aircraft</td>
@@ -47,11 +44,13 @@
         </tr>
         {{#each changeSubmittions}}
         <tr>
-            <td>{{this.aircraft}}</td>
+            <td>{{this.aircraft}} /<br />{{this.aircraft_name}}</td>
             <td>{{this.aircraft_spec}}</td>
             <td>{{this.value}}</td>
             <td>{{this.status}}</td>
-            <td><a href="#" class="submission-verify-button">Verify</a></td>
+            {{#ifeq this.status "pending"}}
+                <td><a href="/admin/change-submissions/{{this._id}}" class="submission-button review">Review</a></td>
+            {{/ifeq}}
         </tr>
         {{/each}}
     </table>
@@ -59,7 +58,7 @@
 
 <!-- REMOVE INFORMATION SUBMISSIONS -->
 <div class="submissions-wrapper">
-    <h3>Remove Information Submissions</h3>
+    <h3>Pending "Remove-Information" Submissions</h3>
     <table>
         <tr class="submission-table-titles">
             <td>Aircraft</td>
@@ -70,11 +69,13 @@
         </tr>
         {{#each removeSubmittions}}
         <tr>
-            <td>{{this.aircraft}}</td>
+            <td>{{this.aircraft}} /<br />{{this.aircraft_name}}</td>
             <td>{{this.aircraft_spec}}</td>
             <td>{{this.value}}</td>
             <td>{{this.status}}</td>
-            <td><a href="#" class="submission-verify-button">Verify</a></td>
+            {{#ifeq this.status "pending"}}
+                <td><a href="/admin/remove-submissions/{{this._id}}" class="submission-button review">Review</a></td>
+            {{/ifeq}}
         </tr>
         {{/each}}
     </table>

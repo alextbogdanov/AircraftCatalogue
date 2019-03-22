@@ -15,34 +15,6 @@ let Submission = require('../models/submission')
 // Bring in User Model
 let User = require('../models/user')
 
-//  Load Side-Nav Data Function
-async function loadSideNav() {
-    let manufacturers = await Manufacturer.find({}, (err) => {
-        if(err) {
-            console.log(err)
-            req.flash('error', 'No manufacturers were found')
-            res.redirect('/')
-        }
-    })
-    let allAircrafts = {}
-
-    for(let key in manufacturers) {
-        let manufacturer = manufacturers[key].name
-
-        let manufacturerAircrafts = await Aircraft.find({manufacturer_name: manufacturer}, {name: 1, _id: 1}, (err) => {
-            if(err) {
-                console.log(err)
-                req.flash('error', 'No aircrafts were found')
-                res.redirect('/')
-            }
-        })
-
-        allAircrafts[manufacturer] = manufacturerAircrafts
-    }
-
-    return allAircrafts
-}
-
 // Render Aircrafts Page
 router.get('/', async(req, res) => {
     let aircraft = await Aircraft.findOne({}, (err) => {
@@ -258,5 +230,33 @@ router.post('/remove-spec/:spec_type/:aircraft_id', ensureAuthenticated, (req, r
         }
     })
 })
+
+//  Load Side-Nav Data Function
+async function loadSideNav() {
+    let manufacturers = await Manufacturer.find({}, (err) => {
+        if(err) {
+            console.log(err)
+            req.flash('error', 'No manufacturers were found')
+            res.redirect('/')
+        }
+    })
+    let allAircrafts = {}
+
+    for(let key in manufacturers) {
+        let manufacturer = manufacturers[key].name
+
+        let manufacturerAircrafts = await Aircraft.find({manufacturer_name: manufacturer}, {name: 1, _id: 1}, (err) => {
+            if(err) {
+                console.log(err)
+                req.flash('error', 'No aircrafts were found')
+                res.redirect('/')
+            }
+        })
+
+        allAircrafts[manufacturer] = manufacturerAircrafts
+    }
+
+    return allAircrafts
+}
 
 module.exports = router

@@ -108,13 +108,13 @@ router.post('/add-aircraft', ensureAuthenticated, (req, res) => {
 
 // Render Review Submitions
 router.get('/review-submissions', async(req, res) => {
-    let addSubmissions = await Submission.find({"type": "add-information"}, (err) => {
+    let addSubmissions = await Submission.find({"type": "add-information", "status": "pending"}, (err) => {
         if(err) {
             console.log(err)
             req.flash('error', 'No "add submissions" were found')
             res.redirect('/admin')
         }
-    }).lean().exec()
+    }).sort({"date_created": -1}).lean().exec()
 
     for(let addKey in addSubmissions) {
         let currentAddSubmissionAircraft = addSubmissions[addKey].aircraft
@@ -130,21 +130,49 @@ router.get('/review-submissions', async(req, res) => {
         })
     }
 
-    let changeSubmittions = await Submission.find({"type": "change-information"}, (err) => {
+    let changeSubmittions = await Submission.find({"type": "change-information", "status": "pending"}, (err) => {
         if(err) {
             console.log(err)
             req.flash('error', 'No "change submissions" were found')
             res.redirect('/admin')
         }
-    })
+    }).sort({"date_created": -1}).lean().exec()
 
-    let removeSubmittions = await Submission.find({"type": "remove-information"}, (err) => {
+    for(let addKey in changeSubmittions) {
+        let currentChangeSubmissionAircraft = changeSubmittions[addKey].aircraft
+
+        let changeSubmissionAircraft = await Aircraft.findById(currentChangeSubmissionAircraft, {name: 1}, (err, aircraft) => {
+            if(err) {
+                console.log(err)
+                req.flash('error', 'No aircraft was found with the given ID')
+                res.redirect('/admin')
+            }
+            
+            changeSubmittions[addKey].aircraft_name = aircraft.name
+        })
+    }
+
+    let removeSubmittions = await Submission.find({"type": "remove-information", "status": "pending"}, (err) => {
         if(err) {
             console.log(err)
             req.flash('error', 'No "remove submissions" were found')
             res.redirect('/admin')
         }
-    })
+    }).sort({"date_created": -1}).lean().exec()
+
+    for(let addKey in removeSubmittions) {
+        let currentRemoveSubmissionAircraft = removeSubmittions[addKey].aircraft
+
+        let changeSubmissionAircraft = await Aircraft.findById(currentRemoveSubmissionAircraft, {name: 1}, (err, aircraft) => {
+            if(err) {
+                console.log(err)
+                req.flash('error', 'No aircraft was found with the given ID')
+                res.redirect('/admin')
+            }
+            
+            removeSubmittions[addKey].aircraft_name = aircraft.name
+        })
+    }
 
     res.render('review-submissions', {addSubmissions, changeSubmittions, removeSubmittions})
 })
@@ -154,34 +182,97 @@ router.get('/add-submissions/:id', async(req, res) => {
     let submissionId = req.params.id
     let submissionType = 'add-submission'
 
-    let submission = await Submission.findById(submissionId, (err) => {
-        if(err) {
-            console.log(err)
-            req.flash('error', 'No submission was found with the given id')
-            res.redirect('/admin')
-        }
+    renderSubmissionReviewForm(submissionId).then((value) => {
+        let submission = value[0]
+        let aircraftName = value[1]
+        let currentValue = value[2]
+
+        res.render('submission', {submission, submissionType, aircraftName, currentValue})
     })
-
-    let aircraft = await Aircraft.findById(submission.aircraft, {name: 1}, (err) => {
-        if(err) {
-            console.log(err)
-            req.flash('error', 'No aircraft was found with the given id')
-            res.redirect('/admin')
-        }
-    })
-
-    let aircraftName = aircraft.name
-
-    res.render('submission', {submission, submissionType, aircraftName})
 })
 
 // Add Submission Functionality
 router.post('/add-submission/:id', async(req, res) => {
-    const submissionId = req.body.submission_id
-    const aircraftId = req.body.aircraft_id
-    const aircraftSpec = req.body.aircraft_spec
-    const value = req.body.value
-    const action = req.body.action
+    let submissionId = req.body.submission_id
+    let aircraftId = req.body.aircraft_id
+    let aircraftSpec = req.body.aircraft_spec
+    let value = req.body.value
+    let action = req.body.action
+
+    submissionReview(submissionId, aircraftId, aircraftSpec, value, action).then((value) => {
+        if(value == "approve") {
+            res.redirect(`/aircrafts/model/${aircraftId}`)
+        } else {
+            res.redirect('/admin/review-submissions')
+        }
+    })
+})
+
+// Render Change Submission Form
+router.get('/change-submissions/:id', async(req, res) => {
+    let submissionId = req.params.id
+    let submissionType = 'change-submission'
+
+    renderSubmissionReviewForm(submissionId).then((value) => {
+        let submission = value[0]
+        let aircraftName = value[1]
+        let currentValue = value[2]
+
+        res.render('submission', {submission, submissionType, aircraftName, currentValue})
+    })
+})
+
+// Change Submission Functionality
+router.post('/change-submission/:id', async(req, res) => {
+    let submissionId = req.body.submission_id
+    let aircraftId = req.body.aircraft_id
+    let aircraftSpec = req.body.aircraft_spec
+    let value = req.body.value
+    let action = req.body.action
+
+    submissionReview(submissionId, aircraftId, aircraftSpec, value, action).then((value) => {
+        if(value == "approve") {
+            res.redirect(`/aircrafts/model/${aircraftId}`)
+        } else {
+            res.redirect('/admin/review-submissions')
+        }
+    })
+})
+
+// Render Remove Submission Form
+router.get('/remove-submissions/:id', async(req, res) => {
+    let submissionId = req.params.id
+    let submissionType = 'remove-submission'
+
+    renderSubmissionReviewForm(submissionId).then((value) => {
+        let submission = value[0]
+        let aircraftName = value[1]
+        let currentValue = value[2]
+
+        res.render('submission', {submission, submissionType, aircraftName, currentValue})
+    })
+})
+
+// Remove Submission Functionality
+router.post('/remove-submission/:id', async(req, res) => {
+    let submissionId = req.body.submission_id
+    let aircraftId = req.body.aircraft_id
+    let aircraftSpec = req.body.aircraft_spec
+    let value = ""
+    let action = req.body.action
+
+    submissionReview(submissionId, aircraftId, aircraftSpec, value, action).then((value) => {
+        if(value == "approve") {
+            res.redirect(`/aircrafts/model/${aircraftId}`)
+        } else {
+            res.redirect('/admin/review-submissions')
+        }
+    })
+})
+
+// Submission Review Functionality Function
+async function submissionReview(submissionId, aircraftId, aircraftSpec, value, action) {
+    let result
 
     if(action == "approve") {
         let newAircraft = {}
@@ -201,10 +292,46 @@ router.post('/add-submission/:id', async(req, res) => {
             }
         })
 
-        res.redirect(`/aircrafts/model/${aircraftId}`)
+        result = "approve"
     } else if(action == "view") {
-        res.redirect('/admin/review-submissions')
+        result = "view"
+    } else if(action == "reject") {
+
+        await Submission.updateOne({_id: submissionId}, {
+            status: 'rejected'
+        }, function(err, numberAffected, rawResponse) {
+            if(err) {
+                console.log(err)
+            }
+        })
+
+        result = "reject"
     }
-})
+    return result
+}
+
+// Render Submission Form Function
+async function renderSubmissionReviewForm(submissionId) {
+    let submission = await Submission.findById(submissionId, (err) => {
+        if(err) {
+            console.log(err)
+            req.flash('error', 'No submission was found with the given id')
+            res.redirect('/admin')
+        }
+    })
+
+    let aircraft = await Aircraft.findById(submission.aircraft, (err) => {
+        if(err) {
+            console.log(err)
+            req.flash('error', 'No aircraft was found with the given id')
+            res.redirect('/admin')
+        }
+    })
+
+    let currentValue = aircraft[submission.aircraft_spec]
+    let aircraftName = aircraft.name
+
+    return [submission, aircraftName, currentValue]
+}
 
 module.exports = router
