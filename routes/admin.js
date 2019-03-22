@@ -107,7 +107,7 @@ router.post('/add-aircraft', ensureAuthenticated, (req, res) => {
 })
 
 // Render Review Submitions
-router.get('/review-submissions', async(req, res) => {
+router.get('/review-submissions', ensureAuthenticated, async(req, res) => {
     let addSubmissions = await Submission.find({"type": "add-information", "status": "pending"}, (err) => {
         if(err) {
             console.log(err)
@@ -178,7 +178,7 @@ router.get('/review-submissions', async(req, res) => {
 })
 
 // Render Add Submission Form
-router.get('/add-submissions/:id', async(req, res) => {
+router.get('/add-submissions/:id', ensureAuthenticated, async(req, res) => {
     let submissionId = req.params.id
     let submissionType = 'add-submission'
 
@@ -192,7 +192,7 @@ router.get('/add-submissions/:id', async(req, res) => {
 })
 
 // Add Submission Functionality
-router.post('/add-submission/:id', async(req, res) => {
+router.post('/add-submission/:id', ensureAuthenticated, async(req, res) => {
     let submissionId = req.body.submission_id
     let aircraftId = req.body.aircraft_id
     let aircraftSpec = req.body.aircraft_spec
@@ -209,7 +209,7 @@ router.post('/add-submission/:id', async(req, res) => {
 })
 
 // Render Change Submission Form
-router.get('/change-submissions/:id', async(req, res) => {
+router.get('/change-submissions/:id', ensureAuthenticated, async(req, res) => {
     let submissionId = req.params.id
     let submissionType = 'change-submission'
 
@@ -223,7 +223,7 @@ router.get('/change-submissions/:id', async(req, res) => {
 })
 
 // Change Submission Functionality
-router.post('/change-submission/:id', async(req, res) => {
+router.post('/change-submission/:id', ensureAuthenticated, async(req, res) => {
     let submissionId = req.body.submission_id
     let aircraftId = req.body.aircraft_id
     let aircraftSpec = req.body.aircraft_spec
@@ -240,7 +240,7 @@ router.post('/change-submission/:id', async(req, res) => {
 })
 
 // Render Remove Submission Form
-router.get('/remove-submissions/:id', async(req, res) => {
+router.get('/remove-submissions/:id', ensureAuthenticated, async(req, res) => {
     let submissionId = req.params.id
     let submissionType = 'remove-submission'
 
@@ -254,7 +254,7 @@ router.get('/remove-submissions/:id', async(req, res) => {
 })
 
 // Remove Submission Functionality
-router.post('/remove-submission/:id', async(req, res) => {
+router.post('/remove-submission/:id', ensureAuthenticated, async(req, res) => {
     let submissionId = req.body.submission_id
     let aircraftId = req.body.aircraft_id
     let aircraftSpec = req.body.aircraft_spec
