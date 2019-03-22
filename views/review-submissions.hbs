@@ -1,11 +1,4 @@
-<!-- JUMBOTRON -->
-<div class="jumbotron" id="admin-panel-jumbotron">
-    <div class="jumbotron-overlay dark">
-        <div class="jumbotron-title-container medium-jumbotron">
-            <h1>Administration Panel</h1>
-        </div>
-    </div>
-</div>
+{{> admin-panel-jumbotron}}
 <!-- ADD INFORMATION SUBMISSIONS -->
 <div class="submissions-wrapper">
     <h3>Pending "Add-Information" Submissions</h3>
@@ -17,17 +10,26 @@
             <td>Status</td>
             <td>Action</td>
         </tr>
-        {{#each addSubmissions}}
+        {{#if addSubmissions}}
+            {{#each addSubmissions}}
+                <tr>
+                    <td>{{this.aircraft}} /<br />{{this.aircraft_name}}</td>
+                    <td>{{this.aircraft_spec}}</td>
+                    <td>{{this.value}}</td>
+                    <td>{{this.status}}</td>
+                    {{#ifeq this.status "pending"}}
+                        <td><a href="/admin/add-submissions/{{this._id}}" class="submission-button review">Review</a></td>
+                    {{/ifeq}}
+                </tr>
+            {{/each}}
+        {{else}}
+            <tr>
+                <td colspan="5"><p>No pending "add-information" submissions</p></td>
+            </tr>
+        {{/if}}
         <tr>
-            <td>{{this.aircraft}} /<br />{{this.aircraft_name}}</td>
-            <td>{{this.aircraft_spec}}</td>
-            <td>{{this.value}}</td>
-            <td>{{this.status}}</td>
-            {{#ifeq this.status "pending"}}
-                <td><a href="/admin/add-submissions/{{this._id}}" class="submission-button review">Review</a></td>
-            {{/ifeq}}
+            <td class="all-submissions-td"><a href="/admin/add-submissions" class="all-submissions-link">View all submissions</a></td>
         </tr>
-        {{/each}}
     </table>
 </div>
 
@@ -42,17 +44,26 @@
             <td>Status</td>
             <td>Action</td>
         </tr>
-        {{#each changeSubmittions}}
+        {{#if changeSubmittions}}
+            {{#each changeSubmittions}}
+                <tr>
+                    <td>{{this.aircraft}} /<br />{{this.aircraft_name}}</td>
+                    <td>{{this.aircraft_spec}}</td>
+                    <td>{{this.value}}</td>
+                    <td>{{this.status}}</td>
+                    {{#ifeq this.status "pending"}}
+                        <td><a href="/admin/change-submissions/{{this._id}}" class="submission-button review">Review</a></td>
+                    {{/ifeq}}
+                </tr>
+            {{/each}}
+        {{else}}
+            <tr>
+                <td colspan="5"><p>No pending "change-information" submissions</p></td>
+            </tr>
+        {{/if}}
         <tr>
-            <td>{{this.aircraft}} /<br />{{this.aircraft_name}}</td>
-            <td>{{this.aircraft_spec}}</td>
-            <td>{{this.value}}</td>
-            <td>{{this.status}}</td>
-            {{#ifeq this.status "pending"}}
-                <td><a href="/admin/change-submissions/{{this._id}}" class="submission-button review">Review</a></td>
-            {{/ifeq}}
+            <td class="all-submissions-td"><a href="/admin/change-submissions" class="all-submissions-link">View all submissions</a></td>
         </tr>
-        {{/each}}
     </table>
 </div>
 
@@ -67,16 +78,25 @@
             <td>Status</td>
             <td>Action</td>
         </tr>
-        {{#each removeSubmittions}}
+        {{#if removeSubmittions}}
+            {{#each removeSubmittions}}
+                <tr>
+                    <td>{{this.aircraft}} /<br />{{this.aircraft_name}}</td>
+                    <td>{{this.aircraft_spec}}</td>
+                    <td>{{this.value}}</td>
+                    <td>{{this.status}}</td>
+                    {{#ifeq this.status "pending"}}
+                        <td><a href="/admin/remove-submissions/{{this._id}}" class="submission-button review">Review</a></td>
+                    {{/ifeq}}
+                </tr>
+            {{/each}}
+        {{else}}
+            <tr>
+                <td colspan="5"><p>No pending "remove-information" submissions</p></td>
+            </tr>
+        {{/if}}
         <tr>
-            <td>{{this.aircraft}} /<br />{{this.aircraft_name}}</td>
-            <td>{{this.aircraft_spec}}</td>
-            <td>{{this.value}}</td>
-            <td>{{this.status}}</td>
-            {{#ifeq this.status "pending"}}
-                <td><a href="/admin/remove-submissions/{{this._id}}" class="submission-button review">Review</a></td>
-            {{/ifeq}}
+            <td class="all-submissions-td"><a href="/admin/remove-submissions" class="all-submissions-link">View all submissions</a></td>
         </tr>
-        {{/each}}
     </table>
 </div>

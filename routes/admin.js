@@ -107,7 +107,7 @@ router.post('/add-aircraft', ensureAuthenticated, (req, res) => {
 })
 
 // Render Review Submitions
-router.get('/review-submissions', ensureAuthenticated, async(req, res) => {
+router.get('/review-submissions', async(req, res) => {
     let addSubmissions = await Submission.find({"type": "add-information", "status": "pending"}, (err) => {
         if(err) {
             console.log(err)
@@ -177,6 +177,17 @@ router.get('/review-submissions', ensureAuthenticated, async(req, res) => {
     res.render('review-submissions', {addSubmissions, changeSubmittions, removeSubmittions})
 })
 
+// Render All Add Submissions
+router.get('/add-submissions', async(req, res) => {
+    let submissionType = "add-information"
+
+    renderAllSubmissions(submissionType).then((value) => {
+        let submissions = value
+
+        res.render('all-submissions', { expressFlash: req.flash(), sessionFlash: res.locals.sessionFlash, submissions, submissionType })
+    })
+})
+
 // Render Add Submission Form
 router.get('/add-submissions/:id', ensureAuthenticated, async(req, res) => {
     let submissionId = req.params.id
@@ -208,6 +219,18 @@ router.post('/add-submission/:id', ensureAuthenticated, async(req, res) => {
     })
 })
 
+// Render All Change Submissions
+router.get('/change-submissions', async(req, res) => {
+    let submissionType = "change-information"
+
+    renderAllSubmissions(submissionType).then((value) => {
+        let submissions = value
+
+        res.render('all-submissions', { expressFlash: req.flash(), sessionFlash: res.locals.sessionFlash, submissions, submissionType })
+    })
+})
+
+
 // Render Change Submission Form
 router.get('/change-submissions/:id', ensureAuthenticated, async(req, res) => {
     let submissionId = req.params.id
@@ -238,6 +261,18 @@ router.post('/change-submission/:id', ensureAuthenticated, async(req, res) => {
         }
     })
 })
+
+// Render All Remove Submissions
+router.get('/remove-submissions', async(req, res) => {
+    let submissionType = "remove-information"
+
+    renderAllSubmissions(submissionType).then((value) => {
+        let submissions = value
+
+        res.render('all-submissions', { expressFlash: req.flash(), sessionFlash: res.locals.sessionFlash, submissions, submissionType })
+    })
+})
+
 
 // Render Remove Submission Form
 router.get('/remove-submissions/:id', ensureAuthenticated, async(req, res) => {
@@ -332,6 +367,33 @@ async function renderSubmissionReviewForm(submissionId) {
     let aircraftName = aircraft.name
 
     return [submission, aircraftName, currentValue]
+}
+
+// Render All Submissions
+async function renderAllSubmissions(submissionType) {
+    let submissions = await Submission.find({type: submissionType}, (err) => {
+        if(err) {
+            console.log(err)
+            req.flash('error', 'No "add-information" submissions were found')
+            res.redirect('/admin/review-submissions')
+        }
+    }).sort({"date_created": -1}).lean().exec()
+
+    for(let key in submissions) {
+        let aircraftId = submissions[key].aircraft
+
+        let aircraftName = await Aircraft.findById(aircraftId, {name: 1}, (err) => {
+            if(err) {
+                console.log(err)
+                req.flash('error', 'No aircraft was found with the given ID')
+                res.redirect('/admin/review-submissions')
+            }
+        })
+
+        submissions[key].aircraft_name = aircraftName.name
+    }
+
+    return submissions
 }
 
 module.exports = router

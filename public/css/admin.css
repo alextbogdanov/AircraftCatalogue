@@ -30,7 +30,7 @@
 
 .submissions-wrapper {
     max-width: 800px;
-    margin: 60px auto 0;
+    margin: 60px auto 30px;
 }
 
 .submissions-wrapper h3 {
@@ -83,4 +83,27 @@
 
 .submission-button:visited {
     color: #fff;
+}
+
+.all-submissions-td {
+    background-color: #fff;
+}
+
+.all-submissions-link:link {
+    color: #fff;
+    background-color: #5790b5;
+    padding: 5px 10px;
+    margin-top: 15px;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+    float: left;
+}
+
+.all-submissions-link:visited {
+    color: #fff;
+    background-color: #5790b5;
+}
+
+.all-submissions-link:hover {
+    background-color: #457B9D;
 }
