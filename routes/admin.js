@@ -107,7 +107,7 @@ router.post('/add-aircraft', ensureAuthenticated, (req, res) => {
 })
 
 // Render Review Submitions
-router.get('/review-submissions', async(req, res) => {
+router.get('/review-submissions', ensureAuthenticated, async(req, res) => {
     let addSubmissions = await Submission.find({"type": "add-information", "status": "pending"}, (err) => {
         if(err) {
             console.log(err)
@@ -178,7 +178,7 @@ router.get('/review-submissions', async(req, res) => {
 })
 
 // Render All Add Submissions
-router.get('/add-submissions', async(req, res) => {
+router.get('/add-submissions', ensureAuthenticated, async(req, res) => {
     let submissionType = "add-information"
 
     renderAllSubmissions(submissionType).then((value) => {
@@ -220,7 +220,7 @@ router.post('/add-submission/:id', ensureAuthenticated, async(req, res) => {
 })
 
 // Render All Change Submissions
-router.get('/change-submissions', async(req, res) => {
+router.get('/change-submissions', ensureAuthenticated, async(req, res) => {
     let submissionType = "change-information"
 
     renderAllSubmissions(submissionType).then((value) => {
@@ -263,7 +263,7 @@ router.post('/change-submission/:id', ensureAuthenticated, async(req, res) => {
 })
 
 // Render All Remove Submissions
-router.get('/remove-submissions', async(req, res) => {
+router.get('/remove-submissions', ensureAuthenticated, async(req, res) => {
     let submissionType = "remove-information"
 
     renderAllSubmissions(submissionType).then((value) => {
