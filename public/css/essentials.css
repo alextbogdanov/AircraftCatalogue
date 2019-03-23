@@ -147,9 +147,14 @@ ul, ol, li {
     display: block;
     width: 100%;
     height: auto;
-    padding: 22.5px 35px;
+    padding: 30px 35px;
     box-sizing: border-box;
     background-color: #fff;
+}
+
+#top-nav.transparent {
+    padding: 50px 65px;
+    background-color: transparent;
 }
 
 #logo:link {
@@ -169,6 +174,18 @@ ul, ol, li {
     color: #22292e;
 }
 
+#top-nav.transparent #logo:link {
+    color: #fff;
+}
+
+#top-nav.transparent #logo:visited {
+    color: #fff;
+}
+
+#top-nav.transparent #logo:hover {
+    color: #fff;
+}
+
 #top-nav ul {
     float: right;
 }
@@ -176,6 +193,10 @@ ul, ol, li {
 #top-nav ul li {
     display: inline-block;
     margin: 0 15px;
+}
+
+#top-nav.transparent ul li {
+    margin: 0 20px;
 }
 
 #top-nav ul li a:link {
@@ -195,9 +216,17 @@ ul, ol, li {
     margin: 0 5px;
 }
 
+#top-nav.transparent ul li a:link {
+    color: #fff;
+}
+
+#top-nav.transparent ul li a:visited {
+    color: #fff;
+}
+
 .sign-in {
-    padding: 3px 6px;
-    border-radius: 3px;
+    padding: 5px 10px;
+    border-radius: 32px;
     color: #fff !important;
     font-size: 14px !important;
 }
@@ -249,7 +278,7 @@ ul, ol, li {
 }
 
 .jumbotron-overlay {
-    background-color: rgba(29, 53, 87, 0.45);
+    background-color: rgba(29, 53, 87, 0.5);
 }
 
 .jumbotron-overlay.dark {
@@ -261,15 +290,39 @@ ul, ol, li {
 }
 
 .large-jumbotron {
-    padding: 100px 0;
+    height: 65vh;
 }
 
 .large-jumbotron h1 {
-    font-size: 50px;
+    font-size: 55px;
+    font-weight: 400;
+    margin: 50px 30px 30px;
+    text-shadow: 0px 0px 50px rgba(0, 0, 0, 1);
 }
 
 .large-jumbotron p {
     font-size: 20px;
+}
+
+#index-cta:link {
+    display: inline-block;
+    color: #fff;
+    padding: 16px 32px;
+    border-radius: 32px;
+    border: 2px solid #EB606A;
+    background-color: rgba(235, 96, 106, 1);
+    transition: all 0.3s ease-in-out;
+}
+
+#index-cta:visited {
+    color: #fff;
+    border: 2px solid #EB606A;
+    background-color: rgba(235, 96, 106, 1);
+}
+
+#index-cta:hover {
+    border: 2px solid #EB606A;
+    background-color: transparent;
 }
 
 .medium-jumbotron {

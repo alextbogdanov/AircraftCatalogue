@@ -103,18 +103,17 @@ app.use('/admin/change-submissions/:id', express.static(path.join(__dirname, 'pu
 app.use('/admin/remove-submissions/:id', express.static(path.join(__dirname, 'public')))
 
 // Import Routes
+const index = require('./routes/index')
 const users = require('./routes/users')
 const aircrafts = require('./routes/aircrafts')
 const admin = require('./routes/admin')
 
 // Use Routes
+app.use('/', index)
 app.use('/users', users)
 app.use('/aircrafts', aircrafts)
 app.use('/admin', admin)
 
-app.get('/', (req, res) => {
-    res.render('index', { expressFlash: req.flash(), sessionFlash: res.locals.sessionFlash })
-})
 
 app.listen(process.env.PORT || 3000, function(){
   console.log('Server Started');
