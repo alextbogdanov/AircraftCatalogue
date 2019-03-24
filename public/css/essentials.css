@@ -373,7 +373,11 @@ ul, ol, li {
 }
 
 #admin-panel-jumbotron {
-    background-image: url('/images/jumbotrons/admin-panel.jpg');
+    background-image: url('../images/jumbotrons/admin-panel.jpg');
+}
+
+#my-profile-jumbotron {
+    background-image: url('../images/jumbotrons/my-profile.jpg');
 }
 
 /* FORMS */

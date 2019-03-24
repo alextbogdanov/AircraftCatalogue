@@ -5,12 +5,11 @@
         <li><p><span>Username:</span>{{user.username}}</p></li>
         <li><p><span>Email:</span>{{user.email}}</p></li>
         <li><p><span>Rank:</span>{{user.rank}}</p></li>
-        <li><p><span>Account age:</span> ...</p></li>
     </ul>
     <ul class="profile-submissions-statistics">
-        <li><p><span>Total submissions:</span>23</p></li>
-        <li><p><span>Total pending approval:</span>4</p></li>
-        <li><p><span>Total approved:</span>12</p></li>
-        <li><p><span>Total rejected:</span>7</p></li>
+        <li><p><span>Total submissions:</span>{{submissionsStats.total}}</p></li>
+        <li><p><span>Total pending approval:</span>{{submissionsStats.pending}}</p></li>
+        <li><p><span>Total approved:</span>{{submissionsStats.approved}}</p></li>
+        <li><p><span>Total rejected:</span>{{submissionsStats.rejected}}</p></li>
     </ul>
 </div>

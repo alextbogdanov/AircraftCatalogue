@@ -7,6 +7,9 @@ const ensureAuthenticated = require('../helpers/ensureAuthenticated')
 // Bring in User Model
 let User = require('../models/user')
 
+// Bring in Submission Model
+let Submission = require('../models/submission')
+
 // Register Form
 router.get('/register', function(req, res) {
     res.render('register')
@@ -86,8 +89,44 @@ router.get('/logout', function(req, res) {
 })
 
 // My-Profile Page
-router.get('/my-profile', ensureAuthenticated, function(req, res) {
-    res.render('my-profile', { expressFlash: req.flash(), sessionFlash: res.locals.sessionFlash})
+router.get('/my-profile', async(req, res) => {
+    let userId = req.user._id
+
+    let submissions = await Submission.find({user: userId}, (err) => {
+        if(err) {
+            console.log(err)
+            req.flash('error', 'No submissions created by the user were found')
+            res.redirect('/')
+        }
+    }).sort({"date_created": -1}).lean().exec()
+
+    let totalSubmissions = submissions.length
+    let pendingSubmissions = []
+    let approvedSubmissions = []
+    let rejectedSubmissions = []
+
+    for(let key in submissions) {
+        let currentSubmission = submissions[key]
+
+        submissions[key].date_created = currentSubmission.date_created.toDateString()
+
+        if(currentSubmission.status == "pending") {
+            pendingSubmissions.push(currentSubmission)
+        } else if(currentSubmission.status == "approved") {
+            approvedSubmissions.push(currentSubmission)
+        } else if(currentSubmission.status == "rejected") {
+            rejectedSubmissions.push(currentSubmission)
+        }
+    }
+
+    let submissionsStats = {
+        total: totalSubmissions,
+        pending: pendingSubmissions.length,
+        approved: approvedSubmissions.length,
+        rejected: rejectedSubmissions.length
+    }
+
+    res.render('my-profile', { expressFlash: req.flash(), sessionFlash: res.locals.sessionFlash, submissions, submissionsStats})
 })
 
 // Profile Page

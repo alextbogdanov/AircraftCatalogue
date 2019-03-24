@@ -8,11 +8,13 @@
             <td>Date submitted</td>
             <td>Status</td>
         </tr>
-        <tr>
-            <td>5c7f208f3e1c381a4891e528</td>
-            <td>06/03/2019</td>
-            <td><span class="pending-approval-submission">Pending approval</span></td>
-        </tr>
+        {{#each submissions}}
+            <tr>
+                <td>{{this._id}}</td>
+                <td>{{this.date_created}}</td>
+                <td><span class="{{this.status}}-submission">{{this.status}}</span></td>
+            </tr>
+        {{/each}}
         <tr>
             <td>5c7f208f3e1c381a4891e528</td>
             <td>06/03/2019</td>
