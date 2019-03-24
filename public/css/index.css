@@ -7,6 +7,7 @@
 }
 
 .section-title {
+    display: block;
     text-align: center;
     color: #22292e;
     font-size: 44px;
@@ -14,9 +15,14 @@
     margin: 50px 0;
 }
 
+.section-title.white {
+    color: #fff;
+}
+
 /* MISSION */
 
 #mission-wrapper {
+    display: block;
     position: relative;
     height: 400px;
     background: linear-gradient(to bottom right, transparent 60%,#fff 50%),
@@ -40,4 +46,32 @@
     align-items: center;
     margin: 0 0 0 auto;
     font-size: 40px;
+}
+
+/* COME ALONG */
+
+#come-along-transition {
+    display: block;
+    height: 52px;
+    background-color: #EB606A;
+}
+
+#come-along-wave {
+    position: relative;
+    width: 80%;
+    float: right;
+    z-index: 100;
+}
+
+#come-along-wrapper {
+    display: block;
+    position: relative;
+    background-color: #EB606A;
+    padding: 40px 0 50px;
+    text-align: center;
+}
+
+#come-along-title {
+    margin-top: 0;
+    margin-bottom: 30px;
 }

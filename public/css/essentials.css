@@ -304,26 +304,36 @@ ul, ol, li {
     font-size: 20px;
 }
 
-#index-cta:link {
+.cta:link, .cta:visited {
     display: inline-block;
-    color: #fff;
     padding: 16px 32px;
     border-radius: 32px;
-    border: 2px solid #EB606A;
-    background-color: rgba(235, 96, 106, 1);
     transition: all 0.3s ease-in-out;
 }
 
-#index-cta:visited {
+.cta:link.get-started, .cta:visited.get-started {
     color: #fff;
     border: 2px solid #EB606A;
     background-color: rgba(235, 96, 106, 1);
 }
 
-#index-cta:hover {
+.cta:hover.get-started {
     border: 2px solid #EB606A;
     background-color: transparent;
 }
+
+.cta:link.come-along, .cta:visited.come-along {
+    color: #fff;
+    border: 2px solid #fff;
+    background-color: rgba(235, 96, 106, 1);
+}
+
+.cta:hover.come-along {
+    color: #EB606A;
+    border: 2px solid #fff;
+    background-color: #fff;
+}
+
 
 .medium-jumbotron {
     padding: 80px 0;
@@ -483,4 +493,18 @@ a.sign-in-submit:visited {
 
 .sign-up-submit:hover {
     background-color: #e9515c !important;
+}
+
+/* WAVES */
+
+.wave {
+    display: block;
+    height: 52px;
+    background-repeat: repeat-x;
+    background-size: contain;
+    background-position: center center;
+}
+
+.wave.come-along {
+    background-image: url('../images/waves/come-along.svg');
 }
