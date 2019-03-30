@@ -89,7 +89,7 @@ router.get('/logout', function(req, res) {
 })
 
 // My-Profile Page
-router.get('/my-profile', async(req, res) => {
+router.get('/my-profile', ensureAuthenticated, async(req, res) => {
     let userId = req.user._id
 
     let submissions = await Submission.find({user: userId}, (err) => {
