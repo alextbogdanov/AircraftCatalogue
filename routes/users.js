@@ -91,7 +91,71 @@ router.get('/logout', function(req, res) {
 // My-Profile Page
 router.get('/my-profile', ensureAuthenticated, async(req, res) => {
     let userId = req.user._id
+    
+    let latestSubmissions
+    let totalSubmissions
+    let pendingSubmissions
+    let approvedSubmissions
+    let rejectedSubmissions
 
+    let submissions = getCurrentUserSubmissions(userId).then((value) => {
+        latestSubmissions = value[0].slice(0, 10)
+
+        totalSubmissions = value[1]
+        pendingSubmissions = value[2]
+        approvedSubmissions = value[3]
+        rejectedSubmissions = value[4]
+
+        let submissionsStats = {
+            total: totalSubmissions,
+            pending: pendingSubmissions.length,
+            approved: approvedSubmissions.length,
+            rejected: rejectedSubmissions.length
+        }
+    
+        res.render('my-profile', { expressFlash: req.flash(), sessionFlash: res.locals.sessionFlash, submissions: value[0], submissionsStats, latestSubmissions})
+    }).catch((err) => {
+        if(err) {
+            console.log(err)
+            res.redirect('/')
+        }
+    })
+})
+
+// My Profile Submissions
+router.get('/my-profile/submissions', async(req, res) => {
+    let userId = req.user._id
+
+    let user = await User.findById(userId, (err) => {
+        if(err) {
+            console.log(err)
+            req.flash('error', 'No user was found with the given id')
+            res.redirect('/users/login')
+        }
+    })
+
+    let submissions = getCurrentUserSubmissions(userId).then((value) => {
+        res.render('user-submissions', { expressFlash: req.flash(), sessionFlash: res.locals.sessionFlash, submissions: value[0], user})
+    }).catch((err) => {
+        console.log(err)
+        res.redirect('/')
+    })
+})
+
+// Profile Page
+router.get('/profile/:id', function(req, res) {
+    User.findById(req.params.id, function(err, person) {
+        if(err) {
+            console.log(err)
+            req.flash('error', 'No user found with given ID')
+            res.redirect('/')
+        }
+        res.render('profile', { expressFlash: req.flash(), sessionFlash: res.locals.sessionFlash, user: person})
+    })
+})
+
+// Get Current User Submissions
+async function getCurrentUserSubmissions(userId) {
     let submissions = await Submission.find({user: userId}, (err) => {
         if(err) {
             console.log(err)
@@ -119,26 +183,7 @@ router.get('/my-profile', ensureAuthenticated, async(req, res) => {
         }
     }
 
-    let submissionsStats = {
-        total: totalSubmissions,
-        pending: pendingSubmissions.length,
-        approved: approvedSubmissions.length,
-        rejected: rejectedSubmissions.length
-    }
-
-    res.render('my-profile', { expressFlash: req.flash(), sessionFlash: res.locals.sessionFlash, submissions, submissionsStats})
-})
-
-// Profile Page
-router.get('/profile/:id', function(req, res) {
-    User.findById(req.params.id, function(err, person) {
-        if(err) {
-            console.log(err)
-            req.flash('error', 'No user found with given ID')
-            res.redirect('/')
-        }
-        res.render('profile', { expressFlash: req.flash(), sessionFlash: res.locals.sessionFlash, user: person})
-    })
-})
+    return [submissions, totalSubmissions, pendingSubmissions, approvedSubmissions, rejectedSubmissions]
+}
 
 module.exports = router

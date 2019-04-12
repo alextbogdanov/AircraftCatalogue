@@ -90,6 +90,7 @@ app.set('view engine', 'hbs')
 // Use css, images & js files
 app.use(express.static(path.join(__dirname, '/public')))
 app.use('/users', express.static(path.join(__dirname, 'public')))
+app.use('/users/my-profile', express.static(path.join(__dirname, 'public')))
 app.use('/users/profile', express.static(path.join(__dirname, 'public')))
 app.use('/aircrafts', express.static(path.join(__dirname, 'public')))
 app.use('/aircrafts/add-spec/:spec_type/:aircraft_id', express.static(path.join(__dirname, 'public')))

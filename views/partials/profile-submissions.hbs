@@ -1,6 +1,6 @@
 <!-- PROFILE SUBMISSIONS -->
 <div class="profile-statistics-container clearfix">
-    <h3 class="profile-statistics-title">Submissions</h3>
+    <h3 class="profile-statistics-title">Latest Submissions</h3>
 
     <table class="profile-submissions">
         <tr class="profile-submissions-titles">
@@ -8,7 +8,7 @@
             <td>Date submitted</td>
             <td>Status</td>
         </tr>
-        {{#each submissions}}
+        {{#each latestSubmissions}}
             <tr>
                 <td>{{this._id}}</td>
                 <td>{{this.date_created}}</td>
@@ -16,14 +16,9 @@
             </tr>
         {{/each}}
         <tr>
-            <td>5c7f208f3e1c381a4891e528</td>
-            <td>06/03/2019</td>
-            <td><span class="approved-submission">Approved</span></td>
-        </tr>
-        <tr>
-            <td>5c7f208f3e1c381a4891e528</td>
-            <td>06/03/2019</td>
-            <td><span class="rejected-submission">Rejected</span></td>
+            <td>
+                <a href="/users/my-profile/submissions" class="all-submissions-link">View all submissions</a>
+            </td>
         </tr>
     </table>
 </div>

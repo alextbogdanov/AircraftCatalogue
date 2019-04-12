@@ -24,30 +24,30 @@
 
         <div class="aircraft-form-half-input left">
             <label for="submission-id">Submission ID:</label>
-            <input type="text" name="submission_id" id="submission-id" value="{{submission._id}}" autocomplete="off">
+            <input type="text" name="submission_id" id="submission-id" value="{{submission._id}}" autocomplete="off" class="disabled">
         </div>
 
         <div class="aircraft-form-half-input right">
             <label for="submission-type">Submission Type:</label>
-            <input type="text" name="type" id="submission_type" value="{{submission.type}}" autocomplete="off">
+            <input type="text" name="type" id="submission_type" value="{{submission.type}}" autocomplete="off" class="disabled">
         </div>
 
         <label for="aircraft-spec">Aircraft Specification:</label>
-        <input type="aircraft-spec" name="aircraft_spec" id="aircraft-spec" value="{{submission.aircraft_spec}}" autocomplete="off">
+        <input type="aircraft-spec" name="aircraft_spec" id="aircraft-spec" value="{{submission.aircraft_spec}}" autocomplete="off" class="disabled">
 
         <div class="aircraft-form-half-input left">
             <label for="aircraft-id">Aircraft ID:</label>
-            <input type="text" name="aircraft_id" id="aircraft-id" value="{{submission.aircraft}}" autocomplete="off">
+            <input type="text" name="aircraft_id" id="aircraft-id" value="{{submission.aircraft}}" autocomplete="off" class="disabled">
         </div>
 
         <div class="aircraft-form-half-input right">
             <label for="aircraft-name">Aircraft Name:</label>
-            <input type="text" name="aircraft_name" id="aircraft-name" value="{{aircraftName}}" autocomplete="off">
+            <input type="text" name="aircraft_name" id="aircraft-name" value="{{aircraftName}}" autocomplete="off" class="disabled">
         </div>
 
         {{#ifnoteq submissionType "add-submission"}}
             <label for="current-value">Current Value:</label>
-            <input type="text" name="current_value" id="current-value" value="{{currentValue}}" autocomplete="off">
+            <input type="text" name="current_value" id="current-value" value="{{currentValue}}" autocomplete="off" class="disabled">
         {{/ifnoteq}}
 
         {{#ifnoteq submissionType "remove-submission"}}
@@ -62,7 +62,7 @@
         <input type="text" name="source" id="submission-source" value="{{submission.source}}" autocomplete="off">
 
         <label for="submission-status">Status:</label>
-        <input type="text" name="status" id="submission-status" value="{{submission.status}}" autocomplete="off">
+        <input type="text" name="status" id="submission-status" value="{{submission.status}}" autocomplete="off" class="disabled">
 
         {{#ifeq submission.status "pending"}}
             <label for="submission-action">Action:</label>

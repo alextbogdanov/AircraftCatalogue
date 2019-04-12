@@ -1,0 +1,35 @@
+<!-- JUMBOTRON -->
+<div class="jumbotron" id="my-profile-jumbotron">
+    <div class="jumbotron-overlay dark">
+        <div class="jumbotron-title-container medium-jumbotron">
+            <h1>Welcome, <span>{{user.username}}</span></h1>
+        </div>
+    </div>
+</div>
+<!-- USER SUBMISSIONS -->
+<div class="submissions-wrapper">
+    <h3>{{user.username}}'s Submissions</h3>
+    <table>
+        <tr class="submission-table-titles">
+            <td>Aircraft</td>
+            <td>Aircraft Spec</td>
+            <td>Value</td>
+            <td>Status</td>
+        </tr>
+        {{#if submissions}}
+            {{#each submissions}}
+                <tr>
+                    <td>{{this.aircraft_name}}</td>
+                    <td>{{this.aircraft_spec}}</td>
+                    <td>{{this.value}}</td>
+                    <td>{{this.status}}</td>
+                    
+                </tr>
+            {{/each}}
+        {{else}}
+            <tr>
+                <td colspan="4"><p>No user submissions</p></td>
+            </tr>
+        {{/if}}
+    </table>
+</div>
