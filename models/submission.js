@@ -33,6 +33,13 @@ const SubmissionSchema = mongoose.Schema({
     aircraft: {
         type: Schema.Types.ObjectId,
         ref: 'aircrafts'
+    },
+    approved_by: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+    },
+    approved_on: {
+        type: Date
     }
 })
 

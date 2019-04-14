@@ -210,7 +210,7 @@ router.post('/add-submission/:id', ensureAuthenticated, async(req, res) => {
     let value = req.body.value
     let action = req.body.action
 
-    submissionReview(submissionId, aircraftId, aircraftSpec, value, action).then((value) => {
+    submissionReview(submissionId, aircraftId, aircraftSpec, value, action, req.user._id).then((value) => {
         if(value == "approve") {
             res.redirect(`/aircrafts/model/${aircraftId}`)
         } else {
@@ -253,7 +253,7 @@ router.post('/change-submission/:id', ensureAuthenticated, async(req, res) => {
     let value = req.body.value
     let action = req.body.action
 
-    submissionReview(submissionId, aircraftId, aircraftSpec, value, action).then((value) => {
+    submissionReview(submissionId, aircraftId, aircraftSpec, value, action, req.user._id).then((value) => {
         if(value == "approve") {
             res.redirect(`/aircrafts/model/${aircraftId}`)
         } else {
@@ -296,7 +296,7 @@ router.post('/remove-submission/:id', ensureAuthenticated, async(req, res) => {
     let value = ""
     let action = req.body.action
 
-    submissionReview(submissionId, aircraftId, aircraftSpec, value, action).then((value) => {
+    submissionReview(submissionId, aircraftId, aircraftSpec, value, action, req.user._id).then((value) => {
         if(value == "approve") {
             res.redirect(`/aircrafts/model/${aircraftId}`)
         } else {
@@ -306,7 +306,7 @@ router.post('/remove-submission/:id', ensureAuthenticated, async(req, res) => {
 })
 
 // Submission Review Functionality Function
-async function submissionReview(submissionId, aircraftId, aircraftSpec, value, action) {
+async function submissionReview(submissionId, aircraftId, aircraftSpec, value, action, userId) {
     let result
 
     if(action == "approve") {
@@ -320,7 +320,9 @@ async function submissionReview(submissionId, aircraftId, aircraftSpec, value, a
         })
 
         await Submission.updateOne({_id: submissionId}, {
-            status: 'approved'
+            status: 'approved',
+            approved_by: userId,
+            approved_on: Date.now()
         }, function(err, numberAffected, rawResponse) {
             if(err) {
                 console.log(err)

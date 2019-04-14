@@ -11,8 +11,8 @@
                         <p><span>Value:</span>{{newestSubmission.value}}</p>
                         <p><span>Submitted by:</span>{{newestSubmission.username}}</p>
                         <p><span>Submitted on:</span>{{newestSubmission.readableDate}}</p>
-                        <p><span>Aprroved by:</span></p>
-                        <p><span>Approved on:</span></p>
+                        <p><span>Aprroved by:</span>{{newestSubmission.admin}}</p>
+                        <p><span>Approved on:</span>{{newestSubmission.readableApprovedOnDate}}</p>
                         <p><span>Source:</span> <a href="{{newestSubmission.source}}" target="_blank">visit source</a></p>
                     {{else}}
                         <p><span>Aircraft spec:</span>{{spec}}</p>

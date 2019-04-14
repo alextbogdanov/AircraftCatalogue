@@ -69,6 +69,7 @@ router.get('/model/:id/:spec', async(req, res) => {
 
     for(let key in newestSubmissions) {
         let userId = newestSubmissions[key].user
+        let adminId = newestSubmissions[key].approved_by
 
         let currentUser = await User.findById(userId, (err) => {
             if(err) {
@@ -78,11 +79,24 @@ router.get('/model/:id/:spec', async(req, res) => {
             }
         })
 
+        let admin = await User.findById(adminId, (err) => {
+            if(err) {
+                console.log(err)
+                req.flash('error', 'No admin was found with the given id')
+                res.redirect(`/aircrafts/model/${aircraftId}`)
+            }
+        })
+
         let username = currentUser.username
+        let adminUsername = admin.username
+        
         let readableDate = (newestSubmissions[key].date_created).toDateString()
+        let readableApprovedOnDate = (newestSubmissions[key].approved_on).toDateString()
 
         newestSubmissions[key].username = username
         newestSubmissions[key].readableDate = readableDate
+        newestSubmissions[key].admin = adminUsername
+        newestSubmissions[key].readableApprovedOnDate = readableApprovedOnDate
     }
 
     let newestSubmission = newestSubmissions[0]
@@ -239,7 +253,8 @@ async function loadSideNav() {
             req.flash('error', 'No manufacturers were found')
             res.redirect('/')
         }
-    })
+    }).sort({'name': 1})
+
     let allAircrafts = {}
 
     for(let key in manufacturers) {
@@ -251,7 +266,7 @@ async function loadSideNav() {
                 req.flash('error', 'No aircrafts were found')
                 res.redirect('/')
             }
-        })
+        }).sort({'name': 1})
 
         allAircrafts[manufacturer] = manufacturerAircrafts
     }
