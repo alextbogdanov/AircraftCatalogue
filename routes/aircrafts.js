@@ -266,10 +266,37 @@ async function loadSideNav() {
                 req.flash('error', 'No aircrafts were found')
                 res.redirect('/')
             }
-        }).sort({'name': 1})
+        }).sort({'family': 1, 'name': 1})
 
-        allAircrafts[manufacturer] = manufacturerAircrafts
+        let families = {}
 
+        manufacturerAircrafts.forEach((aircraft) => {
+            let currentFamily = aircraft.family
+
+            if(!families[currentFamily]) {
+                families[currentFamily] = []
+                families[currentFamily].push(aircraft)
+            } else {
+                if(families[currentFamily]) {
+                    families[currentFamily].push(aircraft)
+                } else {
+                    noFamilies.push(aircraft)
+                }
+            }
+        })
+        
+        let noFamilies = families['']
+        delete families['']
+
+        // if(!noFamilies.isEmpty()) {
+        //     families.others = noFamilies
+        // }
+        
+        if(noFamilies !== undefined) {
+            families.others = noFamilies
+        }
+
+        allAircrafts[manufacturer] = families
     }
     return allAircrafts
 }

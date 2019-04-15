@@ -32,7 +32,7 @@
     cursor: pointer;
 }
 
-.manufacturer i {
+.manufacturer i, .family i {
     margin-left: 5px;
     
     transition: all 0.3s ease-in-out;
@@ -41,7 +41,7 @@
     -o-transition: all 0.3s ease-in-out;
 }
 
-.manufacturer i.up {
+.manufacturer i.up, .family i.up {
     transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
@@ -59,6 +59,19 @@
 }
 
 .manufacturer-models.hidden {
+    display: none;
+}
+
+.family {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.manufacturer-families.toggled {
+    display: inline-block;
+}
+
+.manufacturer-families.hidden {
     display: none;
 }
 
