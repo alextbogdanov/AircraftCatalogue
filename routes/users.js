@@ -10,6 +10,9 @@ let User = require('../models/user')
 // Bring in Submission Model
 let Submission = require('../models/submission')
 
+// Bring in Aircraft Model
+let Aircraft = require('../models/aircraft')
+
 // Register Form
 router.get('/register', function(req, res) {
     res.render('register')
@@ -123,7 +126,7 @@ router.get('/my-profile', ensureAuthenticated, async(req, res) => {
 })
 
 // My Profile Submissions
-router.get('/my-profile/submissions', async(req, res) => {
+router.get('/my-profile/submissions', ensureAuthenticated, async(req, res) => {
     let userId = req.user._id
 
     let user = await User.findById(userId, (err) => {
@@ -134,7 +137,7 @@ router.get('/my-profile/submissions', async(req, res) => {
         }
     })
 
-    let submissions = getCurrentUserSubmissions(userId).then((value) => {
+    getCurrentUserSubmissions(userId).then((value) => {
         res.render('user-submissions', { expressFlash: req.flash(), sessionFlash: res.locals.sessionFlash, submissions: value[0], user})
     }).catch((err) => {
         console.log(err)
@@ -173,6 +176,19 @@ async function getCurrentUserSubmissions(userId) {
         let currentSubmission = submissions[key]
 
         submissions[key].date_created = currentSubmission.date_created.toDateString()
+
+        let currentAircraft = submissions[key].aircraft
+
+        let aircraft = await Aircraft.findById(currentAircraft, {"name": 1, "manufacturer_name": 1}, (err) => {
+            if(err) {
+                console.log(err)
+                req.flash('error', 'No aircraft was found with the given id')
+                res.redirect('/users/my-profile')  
+            }
+        })
+
+        submissions[key].aircraft_name = aircraft.name
+        submissions[key].aircraft_manufacturer = aircraft.manufacturer_name
 
         if(currentSubmission.status == "pending") {
             pendingSubmissions.push(currentSubmission)

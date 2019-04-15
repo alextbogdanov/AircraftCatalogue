@@ -119,7 +119,7 @@ router.get('/review-submissions', ensureAuthenticated, async(req, res) => {
     for(let addKey in addSubmissions) {
         let currentAddSubmissionAircraft = addSubmissions[addKey].aircraft
 
-        let addSubmissionAircraft = await Aircraft.findById(currentAddSubmissionAircraft, {name: 1}, (err, aircraft) => {
+        await Aircraft.findById(currentAddSubmissionAircraft, {name: 1, manufacturer_name: 1}, (err, aircraft) => {
             if(err) {
                 console.log(err)
                 req.flash('error', 'No aircraft was found with the given ID')
@@ -127,6 +127,7 @@ router.get('/review-submissions', ensureAuthenticated, async(req, res) => {
             }
             
             addSubmissions[addKey].aircraft_name = aircraft.name
+            addSubmissions[addKey].manufacturer_name = aircraft.manufacturer_name
         })
     }
 
@@ -141,7 +142,7 @@ router.get('/review-submissions', ensureAuthenticated, async(req, res) => {
     for(let addKey in changeSubmittions) {
         let currentChangeSubmissionAircraft = changeSubmittions[addKey].aircraft
 
-        let changeSubmissionAircraft = await Aircraft.findById(currentChangeSubmissionAircraft, {name: 1}, (err, aircraft) => {
+        await Aircraft.findById(currentChangeSubmissionAircraft, {name: 1, manufacturer_name: 1}, (err, aircraft) => {
             if(err) {
                 console.log(err)
                 req.flash('error', 'No aircraft was found with the given ID')
@@ -149,6 +150,7 @@ router.get('/review-submissions', ensureAuthenticated, async(req, res) => {
             }
             
             changeSubmittions[addKey].aircraft_name = aircraft.name
+            changeSubmittions[addKey].manufacturer_name = aircraft.manufacturer_name
         })
     }
 
@@ -163,7 +165,7 @@ router.get('/review-submissions', ensureAuthenticated, async(req, res) => {
     for(let addKey in removeSubmittions) {
         let currentRemoveSubmissionAircraft = removeSubmittions[addKey].aircraft
 
-        let changeSubmissionAircraft = await Aircraft.findById(currentRemoveSubmissionAircraft, {name: 1}, (err, aircraft) => {
+        await Aircraft.findById(currentRemoveSubmissionAircraft, {name: 1, manufacturer_name: 1}, (err, aircraft) => {
             if(err) {
                 console.log(err)
                 req.flash('error', 'No aircraft was found with the given ID')
@@ -171,6 +173,7 @@ router.get('/review-submissions', ensureAuthenticated, async(req, res) => {
             }
             
             removeSubmittions[addKey].aircraft_name = aircraft.name
+            removeSubmittions[addKey].manufacturer_name = aircraft.manufacturer_name
         })
     }
 
@@ -384,7 +387,7 @@ async function renderAllSubmissions(submissionType) {
     for(let key in submissions) {
         let aircraftId = submissions[key].aircraft
 
-        let aircraftName = await Aircraft.findById(aircraftId, {name: 1}, (err) => {
+        let aircraftName = await Aircraft.findById(aircraftId, {name: 1, manufacturer_name: 1}, (err) => {
             if(err) {
                 console.log(err)
                 req.flash('error', 'No aircraft was found with the given ID')
@@ -393,6 +396,7 @@ async function renderAllSubmissions(submissionType) {
         })
 
         submissions[key].aircraft_name = aircraftName.name
+        submissions[key].manufacturer_name = aircraftName.manufacturer_name
     }
 
     return submissions
