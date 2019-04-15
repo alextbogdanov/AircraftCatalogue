@@ -3,7 +3,10 @@
     max-width: 1000px;
     margin: 0 auto;
     padding: 0 30px;
+
     box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
 }
 
 .section-title {
@@ -43,7 +46,10 @@
     max-width: 710px;
     height: 80%;
     display: flex;
+
     align-items: center;
+    -webkit-align-items: center;
+
     margin: 0 0 0 auto;
     font-size: 40px;
 }

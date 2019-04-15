@@ -28,6 +28,7 @@ a:link {
     text-decoration: none;
     margin: 0;
     font-size: 16px;
+    
     transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -61,12 +62,12 @@ ul, ol, li {
 }
 
 .no-select {
+    user-select: none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none;
 }
 
 .margin-top-60 {
@@ -84,7 +85,9 @@ ul, ol, li {
     left: 0;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 10;
+
     overflow-y: scroll;
+    -ms-overflow-y: scroll;
 }
 
 .modal-wrapper.toggled {
@@ -111,8 +114,14 @@ ul, ol, li {
     background-color: #fff;
     margin: 0 auto;
     padding: 20px;
+
     box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+
     border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
 }
 
 .modal-title {
@@ -154,7 +163,11 @@ ul, ol, li {
     width: 100%;
     height: auto;
     padding: 30px 35px;
+
     box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+
     background-color: #fff;
 }
 
@@ -207,7 +220,11 @@ ul, ol, li {
 
 #top-nav ul li a:link {
     color: #22292e;
+
     transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
 }
 
 #top-nav ul li a:visited {
@@ -232,7 +249,11 @@ ul, ol, li {
 
 .sign-in {
     padding: 5px 12px;
+
     border-radius: 32px;
+    -webkit-border-radius: 32px;
+    -moz-border-radius: 32px;
+
     color: #fff !important;
     font-size: 14px !important;
 }
@@ -326,8 +347,15 @@ ul, ol, li {
 .cta:link, .cta:visited {
     display: inline-block;
     padding: 16px 32px;
+
     border-radius: 32px;
+    -webkit-border-radius: 32px;
+    -moz-border-radius: 32px;
+
     transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
 }
 
 .cta:link.get-started, .cta:visited.get-started {
@@ -420,7 +448,10 @@ ul, ol, li {
 
 .aircraft-form-half-input {
     display: inline-block !important;
+
     width: calc(50% - 15px) !important;
+    width: -webkit-calc(50% - 15px) !important;
+    width: -moz-calc(50% - 15px) !important;
 }
 
 .aircraft-form-half-input.left {
@@ -442,7 +473,11 @@ ul, ol, li {
 .aircraft-form input, textarea, select {
     display: block;
     width: 100%;
+
     box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+
     margin-top: 5px;
     margin-bottom: 20px;
     padding: 10px 15px;
@@ -468,7 +503,11 @@ ul, ol, li {
 .aircraft-form input[type="submit"] {
     border: none !important;
     cursor: pointer;
+
     transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
 }
 
 .aircraft-form select {
@@ -500,7 +539,11 @@ a.sign-in-submit:link {
     margin-bottom: 20px;
     padding: 10px 15px;
     font-size: 20px;
+
     border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+
     text-align: center;
 }
 

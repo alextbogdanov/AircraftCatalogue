@@ -7,7 +7,11 @@
     float: right;
     border-top: 2px solid #F1FAEE;
     border-left: 2px solid #F1FAEE;
+
     box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+
     padding: 30px 30px;
     background-color: #fff;
 }
@@ -27,15 +31,19 @@
 
 .manufacturer i {
     margin-left: 5px;
+    
     transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
 }
 
 .manufacturer i.up {
+    transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
     -o-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
-    transform: rotate(180deg);
 }
 
 .manufacturer-models {
@@ -64,6 +72,8 @@
 
 #main-body {
     max-width: calc(100% - 250px);
+    max-width: -webkit-calc(100% - 250px);
+    max-width: -moz-calc(100% - 250px);
 }
 
 /* AIRCRAFT SPECS */
@@ -122,7 +132,11 @@
 
 .change-button:link {
     color: #9AD4D6;
+
     transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
 }
 
 .change-button:visited {
@@ -140,7 +154,11 @@
 
 .remove-button:link {
     color: #eb606a;
+
     transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
 }
 
 .remove-button:visited {
@@ -160,8 +178,15 @@
     color: #fff;
     background-color: #71c69f;
     padding: 2px 5px;
+
     border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+
     transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
 }
 
 .add-button:visited {
