@@ -260,7 +260,7 @@ async function loadSideNav() {
     for(let key in manufacturers) {
         let manufacturer = manufacturers[key].name
 
-        let manufacturerAircrafts = await Aircraft.find({manufacturer_name: manufacturer}, {name: 1, _id: 1}, (err) => {
+        let manufacturerAircrafts = await Aircraft.find({manufacturer_name: manufacturer}, {name: 1, family: 1, _id: 1}, (err) => {
             if(err) {
                 console.log(err)
                 req.flash('error', 'No aircrafts were found')
@@ -269,8 +269,8 @@ async function loadSideNav() {
         }).sort({'name': 1})
 
         allAircrafts[manufacturer] = manufacturerAircrafts
-    }
 
+    }
     return allAircrafts
 }
 
