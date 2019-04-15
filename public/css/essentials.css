@@ -84,6 +84,7 @@ ul, ol, li {
     left: 0;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 10;
+    overflow-y: scroll;
 }
 
 .modal-wrapper.toggled {
@@ -93,7 +94,7 @@ ul, ol, li {
 .modal-container {
     position: relative;
     max-width: 700px;
-    margin: 80px auto 0;
+    margin: 80px auto;
 }
 
 .modal-close-container {
@@ -138,6 +139,11 @@ ul, ol, li {
 
 .modal-content p a:visited {
     color: #457B9D;
+}
+
+.modal-content ul p span {
+    font-weight: 400;
+    font-size: 14px;
 }
 
 /* TOP-NAV */

@@ -103,7 +103,7 @@ router.get('/model/:id/:spec', async(req, res) => {
 
     let allAircrafts = await loadSideNav()
 
-    res.render('aircrafts', { expressFlash: req.flash(), sessionFlash: res.locals.sessionFlash, aircraft, allAircrafts, newestSubmission, spec, openModal: "yes"})    
+    res.render('aircrafts', { expressFlash: req.flash(), sessionFlash: res.locals.sessionFlash, aircraft, allAircrafts, newestSubmission, newestSubmissions, spec, openModal: "yes"})    
 })
 
 // Render Add Aircraft Spec

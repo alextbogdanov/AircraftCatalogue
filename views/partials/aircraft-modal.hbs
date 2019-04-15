@@ -13,7 +13,21 @@
                         <p><span>Submitted on:</span>{{newestSubmission.readableDate}}</p>
                         <p><span>Aprroved by:</span>{{newestSubmission.admin}}</p>
                         <p><span>Approved on:</span>{{newestSubmission.readableApprovedOnDate}}</p>
-                        <p><span>Source:</span> <a href="{{newestSubmission.source}}" target="_blank">visit source</a></p>
+                        <p>
+                            <span>Source:</span>
+                            {{#ifnoteq newestSubmission.source ""}}
+                                <a href="{{newestSubmission.source}}" target="_blank">visit source</a>
+                            {{else}}
+                                no source submitted
+                            {{/ifnoteq}}
+                        </p>
+                        <br>
+                        <p><span>History:</span></p>
+                        <ul>
+                            {{#each newestSubmissions}}
+                                <li><p><span>{{this.readableDate}} - </span>{{this.value}}</p></li>
+                            {{/each}}
+                        </ul>
                     {{else}}
                         <p><span>Aircraft spec:</span>{{spec}}</p>
                         <p><span>Value:</span>{{lookup aircraft spec}}</p>
